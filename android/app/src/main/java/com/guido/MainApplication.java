@@ -1,4 +1,4 @@
-package com.shoutemrestaurants;
+package com.guido;
 
 import android.app.Application;
 
