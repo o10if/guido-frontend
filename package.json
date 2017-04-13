@@ -10,8 +10,10 @@
     "@shoutem/ui": "^0.12.0-rc.0",
     "react": "~15.4.1",
     "react-native": "0.42.2",
-    "react-native-clean-project": "^1.0.4",
     "react-native-maps": "^0.13.0",
+    "react-native-scrollable-tab-view": "^0.7.4",
+    "react-native-vector-icons": "^4.0.1",
+    "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"

@@ -1,62 +1,47 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import {
-  CardStack,
-  NavigationBar,
-} from '@shoutem/ui/navigation';
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from 'react-native';
 
-import { navigatePop } from './redux';
-import PathsList from './PathsList';
+import FacebookTabBar from './FacebookTabBar';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+
+import RestaurantHome from './RestaurantHome';
 import RestaurantDetails from './RestaurantDetails';
 
-class App extends Component {
-  static propTypes = {
-    onNavigateBack: React.PropTypes.func.isRequired,
-    navigationState: React.PropTypes.object,
-    scene: React.PropTypes.object,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.renderNavBar = this.renderNavBar.bind(this);
-    this.renderScene = this.renderScene.bind(this);
-  }
-
-  renderScene(props) {
-    const { route } = props.scene;
-
-    let Screen = route.key === 'RestaurantDetails' ? RestaurantDetails : PathsList;
-    return (<Screen {...route.props} />);
-  }
-
-  renderNavBar(props) {
-    const { onNavigateBack } = this.props;
-
-    return (
-      <NavigationBar.View
-        {...props}
-        onNavigateBack={onNavigateBack}
-      />
-    );
-  }
-
+export default class App extends Component {
   render() {
-    const { navigationState, onNavigateBack } = this.props;
-
-    return (
-      <CardStack
-        navigationState={navigationState}
-        onNavigateBack={onNavigateBack}
-        renderNavBar={this.renderNavBar}
-        renderScene={this.renderScene}
-      />
-    );
+    return <ScrollableTabView
+      style={{marginTop: 20, }}
+      initialPage={1}
+      renderTabBar={() => <FacebookTabBar />}
+      >
+        <RestaurantDetails />
+        <RestaurantHome />
+      </ScrollableTabView>
   }
 }
 
-export default connect(
-  state => ({ navigationState: state.navigationState }),
-  { onNavigateBack: navigatePop }
-)(App);
+const styles = StyleSheet.create({
+  tabView: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.01)',
+  },
+  card: {
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    borderColor: 'rgba(0,0,0,0.1)',
+    margin: 5,
+    height: 150,
+    padding: 15,
+    shadowColor: '#ccc',
+    shadowOffset: { width: 2, height: 2, },
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+  },
+});
