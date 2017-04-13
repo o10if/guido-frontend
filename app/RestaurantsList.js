@@ -104,9 +104,6 @@ class RestaurantsList extends Component {
                   <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
                 </View>
                 <View styleName="horizontal">
-                  <Caption styleName="collapsible" numberOfLines={2}> </Caption>
-                </View>
-                <View styleName="horizontal">
                   <View styleName="horizontal flexible">
                     <Icon style={{color: 'gray', flex:1}} name="like" />
                     <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
