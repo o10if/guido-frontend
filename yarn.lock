@@ -1972,17 +1972,13 @@ min-document@^2.19.0:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimist@0.0.8:
+minimist@0.0.8, minimist@~0.0.1:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.8.tgz#857fcabfc3397d2625b8228262e86aa7a011b05d"
 
 minimist@^1.1.0, minimist@^1.1.1, minimist@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
-
-minimist@~0.0.1:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
 mkdirp@^0.5.1:
   version "0.5.1"
@@ -2282,7 +2278,7 @@ react-native-gesture-responder@0.1.1:
   dependencies:
     react-timer-mixin "^0.13.3"
 
-"react-native-lightbox@github:shoutem/react-native-lightbox#4e58b9b1aca166142d69b161ff511efc3358ff9f":
+react-native-lightbox@shoutem/react-native-lightbox#4e58b9b1aca166142d69b161ff511efc3358ff9f:
   version "0.7.0"
   resolved "https://codeload.github.com/shoutem/react-native-lightbox/tar.gz/4e58b9b1aca166142d69b161ff511efc3358ff9f"
   dependencies:
@@ -2292,6 +2288,10 @@ react-native-gesture-responder@0.1.1:
 react-native-linear-gradient@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.0.0.tgz#7442c00e1fcd9fca329119dcbaf744d12bcd1b5a"
+
+react-native-maps@^0.13.0:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.13.1.tgz#ed2a7e62f155a51f43c49742eba5bc313eaf2f1e"
 
 react-native-photo-view@^1.2.0:
   version "1.2.0"
@@ -2305,7 +2305,7 @@ react-native-share@^1.0.19:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.0.20.tgz#38ba820a4ddfc5afe1dec0e1456ced11f14352bc"
 
-"react-native-transformable-image@github:shoutem/react-native-transformable-image#7d15395ec3857571711a12bc08f24f3a96ff1cde":
+react-native-transformable-image@shoutem/react-native-transformable-image#7d15395ec3857571711a12bc08f24f3a96ff1cde:
   version "0.0.19"
   resolved "https://codeload.github.com/shoutem/react-native-transformable-image/tar.gz/7d15395ec3857571711a12bc08f24f3a96ff1cde"
   dependencies:

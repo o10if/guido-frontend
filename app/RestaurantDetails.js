@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
+import MapView from 'react-native-maps';
+
 import {
   ScrollView,
   Icon,
@@ -28,60 +30,70 @@ export default class RestaurantDetails extends Component {
     return (
       <Screen styleName="paper full-screen">
         <NavigationBar
-          title={restaurant.name}
-          styleName="clear hide-title"
-          animationName="solidify"
+          title="Parcours StreetArt"
+          styleName=""
         />
 
         <ScrollView>
-          <Image
-            styleName="large-portrait hero"
-            animationName="hero"
-            source={{ uri: restaurant.image && restaurant.image.url }}
-            key={restaurant.name}
-          >
-            <Tile animationName="hero">
-              <Title>{restaurant.name}</Title>
-              <Subtitle>{restaurant.address}</Subtitle>
-            </Tile>
-          </Image>
-
+          <MapView
+              style={{alignSelf: 'stretch', height: 300}}
+              initialRegion={{
+                  latitude: 37.78825,
+                  longitude: -122.4324,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+              }}
+          />
           <Screen styleName="paper">
-            <Text styleName="md-gutter multiline">{restaurant.description}</Text>
-
-            <Divider styleName="line" />
 
             <Row>
-              <Icon name="laptop" />
+              <Icon name="address-full" />
               <View styleName="vertical">
-                <Subtitle>Visit webpage</Subtitle>
-                <Text numberOfLines={1}>{restaurant.url}</Text>
+                <Subtitle>Parcours StreetArt</Subtitle>
+                <Text>1.2km - 19min</Text>
               </View>
-              <Icon styleName="disclosure" name="right-arrow" />
+              <Icon name="add-to-favorites" />
+              <Icon name="comment" />
             </Row>
 
             <Divider styleName="line" />
 
-            <Row>
-              <Icon name="pin" />
-              <View styleName="vertical">
-                <Subtitle>Address</Subtitle>
-                <Text numberOfLines={1}>{restaurant.address}</Text>
-              </View>
-              <Icon styleName="disclosure" name="right-arrow" />
-            </Row>
+            <Text styleName="md-gutter multiline">Oppan gangnam style
+              Gangnam style
 
-            <Divider styleName="line" />
+              Najeneun ttasaroun inganjeogin yeoja
+              Keopi hanjanui yeoyureul aneun pumgyeok issneun yeoja
+              Bami omyeon simjangi tteugeowojineun yeoja
+              Geureon banjeon issneun yeoja
 
-            <Row>
-              <Icon name="email" />
-              <View styleName="vertical">
-                <Subtitle>Email</Subtitle>
-                <Text numberOfLines={1}>{restaurant.mail}</Text>
-              </View>
-            </Row>
+              Naneun sanai
+              Najeneun neomankeum ttasaroun geureon sanai
+              Keopi sikgido jeone wonsyat ttaerineun sanai
+              Bami omyeon simjangi teojyeobeorineun sanai
+              Geureon sanai
 
-            <Divider styleName="line" />
+              Areumdawo sarangseureowo
+              Geurae neo hey geurae baro neo hey
+              Areumdawo sarangseureowo
+              Geurae neo hey geurae baro neo hey
+              Jigeumbuteo gal dekkaji gabolkka
+
+              Oppan gangnam style
+              Gangnam style
+              Oppan gangnam style
+              Gangnam style
+              Oppan gangnam style
+              Eh sexy lady
+              Oppan gangnam style
+              Eh sexy lady
+              Oooo
+
+              Jeongsukhae boijiman nol ttaen noneun yeoja
+              Ittaeda sipeumyeon mukkeossdeon meori puneun yeoja
+              Garyeossjiman wenmanhan nochulboda yahan yeoja
+              Geureon gamgakjeogin yeoja
+            </Text>
+
           </Screen>
         </ScrollView>
       </Screen>
