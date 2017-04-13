@@ -35,56 +35,56 @@ class RestaurantsList extends Component {
           "name": "Trajet2",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "1332",
+          "comments": "432",
         }, {
           "name": "Trajet3",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "1232",
+          "comments": "238",
         }, {
           "name": "Trajet4",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"  },
-          "like": "125",
-          "comments": "468",
+          "like": "65",
+          "comments": "544",
         }, {
           "name": "Trajet5",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "154",
+          "comments": "542",
         }, {
           "name": "Trajet6",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "542",
+          "comments": "98",
         }, {
           "name": "Trajet7",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "643",
+          "comments": "26",
         }, {
           "name": "Trajet8",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "357",
+          "comments": "37",
         }, {
           "name": "Trajet9",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "876",
+          "comments": "537",
         }, {
           "name": "Trajet10",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "125",
-          "comments": "468",
+          "like": "56",
+          "comments": "54",
         }],
       }
     }
@@ -94,10 +94,7 @@ class RestaurantsList extends Component {
       return (
           <TouchableOpacity key={id} styleName="flexible">
             <Card styleName="flexible">
-              <Image
-                styleName="medium-wide"
-                source={{uri: path.image.url}}
-              />
+              <Image source={require('../doc/map.png')} />
               <View styleName="content">
                 <Subtitle numberOfLines={3}>{path.name}</Subtitle>
                 <View styleName="horizontal">
