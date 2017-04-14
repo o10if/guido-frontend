@@ -8,7 +8,8 @@ import {
 
 import { styles } from './Styles';
 import FacebookTabBar from './FacebookTabBar';
-import RestaurantHome from './RestaurantHome';
+import RouteView from './RouteView';
+// import RestaurantDetails from './RestaurantDetails';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 export default React.createClass({
@@ -19,13 +20,13 @@ export default React.createClass({
       renderTabBar={() => <FacebookTabBar />}
       >
       <ScrollView tabLabel="ios-eye" style={styles.tabView}>
-        <RestaurantHome />
+        <RouteView />
       </ScrollView>
       <ScrollView tabLabel="ios-map" style={styles.tabView}>
-        <RestaurantHome />
+        <RouteView />
       </ScrollView>
       <ScrollView tabLabel="md-list" style={styles.tabView}>
-        <RestaurantHome />
+        <RouteView />
       </ScrollView>
     </ScrollableTabView>;
   },

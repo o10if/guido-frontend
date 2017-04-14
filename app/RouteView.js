@@ -21,7 +21,7 @@ import {
 
 mapStyle = [];// require('../assets/mapStyle.json');
 
-export default class RestaurantDetails extends Component {
+export default class RouteView extends Component {
   static propTypes = {
     restaurant: React.PropTypes.object,
   };
@@ -31,12 +31,6 @@ export default class RestaurantDetails extends Component {
 
     return (
       <Screen styleName="paper full-screen">
-        <NavigationBar
-          title="Parcours StreetArt"
-          styleName=""
-        />
-
-        <ScrollView>
           <MapView
               style={{alignSelf: 'stretch', height: 300}}
               initialRegion={{
@@ -98,7 +92,6 @@ export default class RestaurantDetails extends Component {
             </Text>
 
           </Screen>
-        </ScrollView>
       </Screen>
     );
   }
