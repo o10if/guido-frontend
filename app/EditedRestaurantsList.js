@@ -20,7 +20,7 @@ import {
 import { connect } from 'react-redux';
 import { navigatePush } from './redux';
 
-class RestaurantsList extends Component {
+class PathsList extends Component {
     constructor(props) {
       super(props);
       this.renderRow = this.renderRow.bind(this);
@@ -155,5 +155,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
 	undefined,
 	mapDispatchToProps
-)(RestaurantsList);
+)(PathsList);
 
