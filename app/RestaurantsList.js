@@ -109,7 +109,7 @@ class RestaurantsList extends Component {
                     <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
                   </View>
                   <View styleName="horizontal flexible">
-                    <Icon style={{color: 'gray', flex:1, top:3, transform:[{scale:0.7}]}}  name="comment-full" />
+                    <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
                     <Caption style={{color: 'gray', flex:1}} >{path.comments}</Caption>
                   </View>
                 </View>
