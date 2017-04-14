@@ -38,19 +38,19 @@ class PathsList extends Component {
         }, {
           "name": "Trajet2",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
           "like": "1332",
           "comments": "432",
         }, {
           "name": "Trajet3",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
           "like": "1232",
           "comments": "238",
         }, {
           "name": "Trajet4",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg"  },
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg"  },
           "like": "65",
           "comments": "544",
         }, {
@@ -68,7 +68,7 @@ class PathsList extends Component {
         }, {
           "name": "Trajet7",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
           "like": "643",
           "comments": "26",
         }, {
@@ -86,7 +86,7 @@ class PathsList extends Component {
         }, {
           "name": "Trajet10",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
           "like": "56",
           "comments": "54",
         }],
