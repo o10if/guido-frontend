@@ -1,17 +1,12 @@
 import React from 'react';
-
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
 } from 'react-native';
-
-import {
-  ScrollView,
-} from '@shoutem/ui';
-
 import Icon from 'react-native-vector-icons/Ionicons';
+import { styles } from './Styles';
 
 const FacebookTabBar = React.createClass({
   tabIcons: [],
@@ -58,25 +53,6 @@ const FacebookTabBar = React.createClass({
         </TouchableOpacity>;
       })}
     </View>;
-  },
-});
-
-const styles = StyleSheet.create({
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 10,
-  },
-  tabs: {
-    height: 45,
-    flexDirection: 'row',
-    paddingTop: 5,
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderBottomColor: 'rgba(0,0,0,0.05)',
   },
 });
 

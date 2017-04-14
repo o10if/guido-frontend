@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,41 +6,27 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { styles } from './Styles';
 import FacebookTabBar from './FacebookTabBar';
+import RestaurantHome from './RestaurantHome';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-import RestaurantHome from './RestaurantHome';
-import RestaurantDetails from './RestaurantDetails';
-
-export default class App extends Component {
+export default React.createClass({
   render() {
     return <ScrollableTabView
       style={{marginTop: 20, }}
-      initialPage={1}
+      initialPage={0}
       renderTabBar={() => <FacebookTabBar />}
       >
-        <RestaurantDetails />
+      <ScrollView tabLabel="ios-eye" style={styles.tabView}>
         <RestaurantHome />
-      </ScrollableTabView>
-  }
-}
-
-const styles = StyleSheet.create({
-  tabView: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: 'rgba(0,0,0,0.01)',
-  },
-  card: {
-    borderWidth: 1,
-    backgroundColor: '#fff',
-    borderColor: 'rgba(0,0,0,0.1)',
-    margin: 5,
-    height: 150,
-    padding: 15,
-    shadowColor: '#ccc',
-    shadowOffset: { width: 2, height: 2, },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
+      </ScrollView>
+      <ScrollView tabLabel="ios-map" style={styles.tabView}>
+        <RestaurantHome />
+      </ScrollView>
+      <ScrollView tabLabel="md-list" style={styles.tabView}>
+        <RestaurantHome />
+      </ScrollView>
+    </ScrollableTabView>;
   },
 });
