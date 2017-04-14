@@ -11,6 +11,7 @@ import {
   View,
   Caption,
   Icon,
+  TextInput,
 } from '@shoutem/ui';
 
 export default class RoutesList extends Component {
@@ -114,9 +115,9 @@ export default class RoutesList extends Component {
         );
       });
       return (
-        <GridRow columns={2}>
-          {cellViews}
-        </GridRow>
+          <GridRow columns={2}>
+            {cellViews}
+          </GridRow>
       );
     }
 
@@ -126,6 +127,9 @@ export default class RoutesList extends Component {
       });
       return (
         <Screen>
+          <TextInput
+            placeholder="Search"
+          />
           <ListView
             data={groupedData}
             renderRow={this.renderRow}
