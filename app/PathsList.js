@@ -21,6 +21,10 @@ import { connect } from 'react-redux';
 import { navigatePush } from './redux';
 
 class PathsList extends Component {
+    static propTypes = {
+      onButtonPress: React.PropTypes.func,
+    };
+
     constructor(props) {
       super(props);
       this.renderRow = this.renderRow.bind(this);
@@ -28,7 +32,7 @@ class PathsList extends Component {
         paths: [{
           "name": "Trajet1",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
           "like": "125",
           "comments": "468",
         }, {
@@ -90,11 +94,14 @@ class PathsList extends Component {
     }
 
     renderRow(rowData, sectionId, index) {
+
+      const { onButtonPress } = this.props;
+
       const cellViews = rowData.map((path, id) => {
       return (
-          <TouchableOpacity key={id} styleName="flexible">
+          <TouchableOpacity key={id} styleName="flexible" onPress={() => onButtonPress(path)}>
             <Card styleName="flexible">
-              <Image source={require('../doc/map.png')} />
+              <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
               <View styleName="content">
                 <Subtitle numberOfLines={3}>{path.name}</Subtitle>
                 <View styleName="horizontal">
