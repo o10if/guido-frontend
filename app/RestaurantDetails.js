@@ -19,6 +19,8 @@ import {
   NavigationBar,
 } from '@shoutem/ui/navigation';
 
+mapStyle = [];// require('../assets/mapStyle.json');
+
 export default class RestaurantDetails extends Component {
   static propTypes = {
     restaurant: React.PropTypes.object,
@@ -38,11 +40,12 @@ export default class RestaurantDetails extends Component {
           <MapView
               style={{alignSelf: 'stretch', height: 300}}
               initialRegion={{
-                  latitude: 37.78825,
-                  longitude: -122.4324,
-                  latitudeDelta: 0.0922,
-                  longitudeDelta: 0.0421,
+                  latitude: 45.759623,
+                  longitude: 4.833967,
+                  latitudeDelta: 0.017,
+                  longitudeDelta: 0.008
               }}
+              customMapStyle={mapStyle}
           />
           <Screen styleName="paper">
 
