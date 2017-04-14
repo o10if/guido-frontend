@@ -21,7 +21,7 @@ import {
 
 mapStyle = [];// require('../assets/mapStyle.json');
 
-export default class RouteView extends Component {
+export default class RouteDetail extends Component {
   static propTypes = {
     restaurant: React.PropTypes.object,
   };

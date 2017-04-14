@@ -13,17 +13,7 @@ import {
   Icon,
 } from '@shoutem/ui';
 
-import {
-  NavigationBar,
-} from '@shoutem/ui/navigation';
-
-import { connect } from 'react-redux';
-import { navigatePush } from './redux';
-
-class PathsList extends Component {
-    static propTypes = {
-      onButtonPress: React.PropTypes.func,
-    };
+export default class RoutesList extends Component {
 
     constructor(props) {
       super(props);
@@ -95,11 +85,9 @@ class PathsList extends Component {
 
     renderRow(rowData, sectionId, index) {
 
-      const { onButtonPress } = this.props;
-
       const cellViews = rowData.map((path, id) => {
       return (
-          <TouchableOpacity key={id} styleName="flexible" onPress={() => onButtonPress(path)}>
+          <TouchableOpacity key={id} styleName="flexible">
             <Card styleName="flexible">
               <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
               <View styleName="content">
@@ -146,18 +134,3 @@ class PathsList extends Component {
       );
     }
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  onButtonPress: (restaurant) => {
-    dispatch(navigatePush({
-      key: 'RestaurantDetails',
-      title: 'Details',
-    }, { restaurant }));
-  },
-});
-
-export default connect(
-	undefined,
-	mapDispatchToProps
-)(PathsList);
-
