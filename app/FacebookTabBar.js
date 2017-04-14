@@ -32,11 +32,11 @@ const FacebookTabBar = React.createClass({
     });
   },
 
-  //color between rgb(59,89,152) and rgb(204,204,204)
+  //color between rgb(200,200,200) and rgb(20,20,20)
   iconColor(progress) {
-    const red = 59 + (204 - 59) * progress;
-    const green = 89 + (204 - 89) * progress;
-    const blue = 152 + (204 - 152) * progress;
+    const red = 20 + (180 - 0) * progress;
+    const green = 20 + (180 - 0) * progress;
+    const blue = 20 + (180 - 0) * progress;
     return `rgb(${red}, ${green}, ${blue})`;
   },
 
@@ -47,7 +47,7 @@ const FacebookTabBar = React.createClass({
           <Icon
             name={tab}
             size={30}
-            color={this.props.activeTab === i ? 'rgb(59,89,152)' : 'rgb(204,204,204)'}
+            color={this.props.activeTab === i ? 'rgb(20,20,20)' : 'rgb(200,200,200)'}
             ref={(icon) => { this.tabIcons[i] = icon; }}
           />
         </TouchableOpacity>;
