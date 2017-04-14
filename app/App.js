@@ -7,7 +7,7 @@ import {
 } from '@shoutem/ui/navigation';
 
 import { navigatePop } from './redux';
-import RestaurantsList from './RestaurantsList';
+import PathsList from './PathsList';
 import RestaurantDetails from './RestaurantDetails';
 
 class App extends Component {
@@ -27,7 +27,7 @@ class App extends Component {
   renderScene(props) {
     const { route } = props.scene;
 
-    let Screen = route.key === 'RestaurantDetails' ? RestaurantDetails : RestaurantsList;
+    let Screen = route.key === 'RestaurantDetails' ? RestaurantDetails : PathsList;
     return (<Screen {...route.props} />);
   }
 
