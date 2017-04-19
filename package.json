@@ -7,7 +7,7 @@
     "purge": "./node_modules/.bin/react-native-clean-project"
   },
   "dependencies": {
-    "@shoutem/ui": "^0.12.0-rc.0",
+    "@shoutem/ui": "^0.13.0",
     "react": "~15.4.1",
     "react-native": "0.42.2",
     "react-native-maps": "^0.13.0",
