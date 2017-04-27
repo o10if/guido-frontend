@@ -11,6 +11,7 @@ import FacebookTabBar from './FacebookTabBar';
 import RouteDetail from './RouteDetail';
 import RoutesList from './RoutesList';
 import RouteGeneral from './RouteGeneral';
+import RouteSearchBar from './RouteSearchBar';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 export default React.createClass({
@@ -30,6 +31,7 @@ export default React.createClass({
         <RoutesList />
       </ScrollView>
       <ScrollView tabLabel="ios-person" style={styles.tabView}>
+        <RouteSearchBar />
         <RoutesList />
       </ScrollView>
     </ScrollableTabView>;
