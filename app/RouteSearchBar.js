@@ -13,7 +13,7 @@ export default class RouteSearchBar extends Component {
   render() {
     return (
       <View>
-        <View style={{flex: 1, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 10, flexDirection: 'row'}}>
+        <View style={{flex: 1, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
           <Icon
             style={{color:'gray', paddingLeft:5, paddingTop:2}}
             name="search" />
