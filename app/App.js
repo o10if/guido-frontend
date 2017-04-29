@@ -12,6 +12,7 @@ import RouteDetail from './RouteDetail';
 import RoutesList from './RoutesList';
 import RouteGeneral from './RouteGeneral';
 import RouteSearchBar from './RouteSearchBar';
+import SearchResult from './SearchResult';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
 export default React.createClass({
@@ -28,11 +29,10 @@ export default React.createClass({
         <RouteDetail />
       </ScrollView>
       <ScrollView tabLabel="ios-eye" style={styles.tabView}>
-        <RoutesList />
+        <RouteSearchBar />
       </ScrollView>
       <ScrollView tabLabel="ios-person" style={styles.tabView}>
         <RouteSearchBar />
-        <RoutesList />
       </ScrollView>
     </ScrollableTabView>;
   },
