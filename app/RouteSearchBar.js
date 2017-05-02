@@ -13,12 +13,22 @@ export default class RouteSearchBar extends Component {
     this.state = {text: ''};
   }
 
+  onSubmitEditing(event){
+    var textRearch = this.state.text;
+
+    this.props.navigator.push({
+      title: 'Results',
+      name: 'SearchResult',
+      component: SearchResult,
+      passProps: {text: textRearch}
+    });
+  }
   render() {
     return (
-      <View>
-        <View style={{flex: 1, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 10, flexDirection: 'row'}}>
+      <View style={{flex:1, marginTop:60}}>
+        <View style={{margin:5, height:32, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 10, flexDirection: 'row'}}>
           <Icon
-            style={{color:'gray', paddingLeft:5, paddingTop:2}}
+            style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
             name="search" />
           <TextInput
             returnKeyType = "search"
@@ -27,12 +37,11 @@ export default class RouteSearchBar extends Component {
             placeholder="Type here to search route"
             value={this.state.text}
             onChangeText={(text) => this.setState({text})}
+            onSubmitEditing={this.onSubmitEditing.bind(this)}
           />
         </View>
-
-        {
-          this.state.text==''?<RoutesList />:<SearchResult text={this.state.text.split(' ').map((word) => word && '🍕').join(' ')}/>
-        }
+        <Text>{this.state.text}</Text>
+        <RoutesList />
       </View>
     );
   }
