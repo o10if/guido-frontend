@@ -34,7 +34,7 @@ var NavigationBarRouteMapper = {
           </TouchableOpacity>
         </View>
       );
-    }else if(index===1){
+    }else{
       return(
         <View style={{flex:1}}>
           <TouchableOpacity
