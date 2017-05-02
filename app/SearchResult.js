@@ -40,7 +40,7 @@ export default class SearchResult extends Component {
 
   renderRow(result) {
     return (
-      <View>
+      <View style={{flex:1}}>
         <Image
           styleName="large-banner"
           source={{ uri: result.image.url }}
@@ -57,7 +57,7 @@ export default class SearchResult extends Component {
 
   render() {
     return (
-      <Screen>
+      <Screen style={{marginTop:60, flex:1}}>
         <ListView
           data={this.state.results}
           renderRow={this.renderRow}
