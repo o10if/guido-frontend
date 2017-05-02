@@ -40,7 +40,6 @@ export default class RouteSearchBar extends Component {
             onSubmitEditing={this.onSubmitEditing.bind(this)}
           />
         </View>
-        <Text>{this.state.text}</Text>
         <RoutesList />
       </View>
     );
