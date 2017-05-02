@@ -25,14 +25,27 @@ var RouteDetail = require('./RouteDetail').default;
 var NavigationBarRouteMapper = {
   //设置导航栏左按钮
   LeftButton: function(route,navigator,index,navState) {
-    return (
-      <View style={{flex:1}}>
-        <TouchableOpacity
-          underlayColor='transparent'>
-          <Icon name="sidebar" style={{marginVertical:20,marginLeft:10}}/>
-        </TouchableOpacity>
-      </View>
-    );
+    if(index === 0){
+      return (
+        <View style={{flex:1}}>
+          <TouchableOpacity
+            underlayColor='transparent'>
+            <Icon name="sidebar" style={{marginVertical:20,marginLeft:10}}/>
+          </TouchableOpacity>
+        </View>
+      );
+    }else if(index===1){
+      return(
+        <View style={{flex:1}}>
+          <TouchableOpacity
+            underlayColor='transparent'
+            onPress={()=>navigator.pop()}>
+            <Icon name="back" style={{marginVertical:20,marginLeft:10}}/>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+
   },
 
   //设置导航栏标题
