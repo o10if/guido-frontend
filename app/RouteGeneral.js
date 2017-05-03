@@ -1,3 +1,5 @@
+import { Route, Landmark } from './agent';
+
 import React, { Component} from 'react';
 import MapView from 'react-native-maps';
 import flag from '../assets/flag.png';
@@ -20,78 +22,36 @@ import {
   NavigationBar,
 } from '@shoutem/ui/navigation';
 
-mapStyle = [];// require('../assets/mapStyle.json');
-
-markers = [
-{
-  title: 'Quai St Vincent',
-  coordinates: {
-    latitude: 45.767184,
-    longitude: 4.829668
-  }
-},
-{
-  title: 'Place Bellecour',
-  coordinates: {
-    latitude: 45.758115,
-    longitude: 4.833609
-  }
-},
-{
-  title: 'Croix-Rousse',
-  coordinates: {
-    latitude: 45.775708,
-    longitude: 4.831610
-  }
-},
-{
-  title: 'Hotel de Ville',
-  coordinates: {
-    latitude: 45.767119,
-    longitude: 4.833660
-  }
-},
-{
-  title: 'Point 4',
-  coordinates: {
-    latitude: 45.761191,
-    longitude: 4.835183
-  }
-},
-{
-  title: 'Plateau Croix-Rousse',
-  coordinates: {
-    latitude:  45.778582,
-    longitude: 4.816948
-  }
-},
-{
-  title: 'Caluire',
-  coordinates: {
-    latitude:  45.784130,
-    longitude: 4.840627
-  }
-},
-{
-  title: 'Croix-Rousse',
-  coordinates: {
-    latitude:  45.779701,
-    longitude: 4.827452
-  }
-}];
-
-polylines = [
-   [{latitude: 45.767119, longitude: 4.833660}, {latitude: 45.761191, longitude: 4.835183}, {latitude: 45.761191, longitude: 4.835774}],
-   [{latitude: 45.778582, longitude: 4.816948}, {latitude: 45.779701, longitude: 4.827452}, {latitude: 45.784130, longitude: 4.840627}],
-];
+mapStyle = require('../assets/mapStyle.json');
 
 export default class RouteGeneral extends Component {
-  static propTypes = {
-    restaurant: React.PropTypes.object,
-  };
+  constructor(props) {
+    console.warn("constructor");
+    super(props);
+    this.state = {
+      waypoints: [],
+      landmarks: [],
+      isLoading: true
+    }
+  }
+  async componentDidMount() {
+    console.warn("componentDidMount");
+    let routes = await Route.all();
+    let landmarks = await Landmark.all();
+    console.warn(routes.toString());
+    console.warn(landmarks.toString());
+    this.setState({
+      waypoints: routes.waypoints,
+      landmarks: landmarks,
+      isLoading: false
+    });
+    console.warn("component ->  " + this.state.isLoading);
+  }
 
   render() {
-    const { restaurant } = this.props;
+    const waypoints = this.state.waypoints;
+    const landmarks = this.state.landmarks;
+    console.warn("loading: " + this.state.isLoading);
 
     return (
       <Screen styleName="paper full-screen">
@@ -105,19 +65,19 @@ export default class RouteGeneral extends Component {
               }}
               customMapStyle={mapStyle}
               >
-              { polylines.map(coordinates => (
+              { waypoints.map(coordinates => (
                                    <MapView.Polyline
-                                       coordinates={coordinates}
+                                       coordinates={{latitude:waypoint.latitude, longitude:waypoint.longitude}}
                                        strokeColor="#2b2c2c"
                                        strokeWidth={2}
                                     />
                                ))
               }
-              {markers.map(marker => (
+              {landmarks.map(landmark => (
                 <MapView.Marker
-                  coordinate={marker.coordinates}
-                  title={marker.title}
-                  description={marker.title}
+                  coordinate={{latitude:landmark.latitude, longitude:landmark.longitude}}
+                  title={landmark.title}
+                  //description={landmark.properties.description}
                   //image={flag}
                   pinColor="#2b2c2c"
                 />

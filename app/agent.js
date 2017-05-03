@@ -43,6 +43,8 @@ export const Waypoint = {
 };
 
 export const Landmark = {
+  all: () =>
+    makeRequest(`/landmarks`),
   get: (id) =>
     makeRequest(`/landmarks/${id}`),
 };
