@@ -111,7 +111,7 @@ export default class SearchResult extends Component {
 
       const cellViews = result.map((path, id) => {
       return (
-          <TouchableOpacity key={id} styleName="flexible" onPress={()=>this.rowPressed(result)}>
+          <TouchableOpacity key={id} styleName="flexible" onPress={()=>this.rowPressed(path)}>
             <Card styleName="flexible">
               <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
               <View styleName="content">
