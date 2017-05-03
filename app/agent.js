@@ -38,6 +38,8 @@ export const Event = {
 };
 
 export const Waypoint = {
+  all: () =>
+    makeRequest(`/waypoints`),
   get: (id) =>
     makeRequest(`/waypoints/${id}`),
 };
