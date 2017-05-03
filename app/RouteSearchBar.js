@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, View } from 'react-native';
 import {
-  Icon
+  Icon,
+  TouchableOpacity,
+  Screen,
 } from '@shoutem/ui';
 
 import RoutesList from './RoutesList';
 import SearchResult from './SearchResult';
+import SearchContainer from './SearchContainer';
 
 export default class RouteSearchBar extends Component {
   constructor(props) {
@@ -17,31 +20,29 @@ export default class RouteSearchBar extends Component {
     var textRearch = this.state.text;
 
     this.props.navigator.push({
-      title: 'Results',
-      name: 'SearchResult',
-      component: SearchResult,
-      passProps: {text: textRearch}
+      title: 'Search',
+      name: 'SearchContainer',
+      component: SearchContainer,
     });
   }
+
+  rowPressed() {
+      this.props.navigator.push({
+        title: 'Search',
+        name: 'SearchContainer',
+        component: SearchContainer,
+      });
+  }
+
   render() {
     return (
-      <View style={{flex:1, marginTop:60}}>
-        <View style={{margin:5, height:32, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 10, flexDirection: 'row'}}>
-          <Icon
-            style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
-            name="search" />
-          <TextInput
-            returnKeyType = "search"
-            underlineColorAndroid='transparent'
-            style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
-            placeholder="Type here to search route"
-            value={this.state.text}
-            onChangeText={(text) => this.setState({text})}
-            onSubmitEditing={this.onSubmitEditing.bind(this)}
-          />
-        </View>
+      <Screen style={{marginTop:60}}>
+        <TouchableOpacity
+          onPress={()=>this.rowPressed()}>
+          <Icon name="search"/>
+        </TouchableOpacity>
         <RoutesList />
-      </View>
+      </Screen>
     );
   }
 }

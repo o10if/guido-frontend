@@ -21,23 +21,7 @@ export default class SearchResult extends Component {
     super(props);
     this.renderRow = this.renderRow.bind(this);
     this.state = {
-      results: [{
-        "id": "a4b76c9ef67dbf",
-        "description": "trajet1 trajet1 trajet1 trajet1 trajet1 trajet1",
-        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-      }, {
-        "id": "c23fb35ecceafb",
-        "description": "trajet2 trajet2 trajet2 trajet2 trajet2 trajet2",
-        "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
-      }, {
-        "id": "c142e53d23aec",
-        "description": "trajet3 trajet3 trajet3 trajet3 trajet3 trajet3",
-        "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
-      }, {
-        "id": "cedfbcfaebfae",
-        "description": "trajet4 trajet4 trajet4 trajet4 trajet4 trajet4",
-        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-      }],
+
     }
   }
 
@@ -76,10 +60,7 @@ export default class SearchResult extends Component {
   render() {
     return (
       <Screen style={{marginTop:60, flex:1}}>
-        <ListView
-          data={this.state.results}
-          renderRow={this.renderRow}
-        />
+        <Text>{this.props.texti}</Text>
       </Screen>
     );
   }

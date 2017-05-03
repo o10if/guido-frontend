@@ -13,13 +13,15 @@ var {
 } = ReactNative;
 
 import {
-  Icon
+  Icon,
+  Screen,
 } from '@shoutem/ui';
 
 //引入子页面
 var RouteSearchBar = require('./RouteSearchBar').default;
 var SearchResult = require('./SearchResult').default;
 var RouteDetail = require('./RouteDetail').default;
+var SearchContainer = require('./SearchContainer').default;
 
 //设置导航栏
 var NavigationBarRouteMapper = {
@@ -78,6 +80,8 @@ var SearchHome = React.createClass ({
         return <SearchResult navigator={navigator} {...route.passProps}/>;
       case 'RouteDetail' :
         return <RouteDetail navigator={navigator} {...route.passProps}/>;
+      case 'SearchContainer' :
+        return <SearchContainer navigator={navigator} {...route.passProps}/>;
     }
   },
 
@@ -86,16 +90,20 @@ var SearchHome = React.createClass ({
                 {name: 'RouteSearchBar', title: 'Guido', index: 0},
                 {name: 'SearchResult', title: 'Results', index: 1},
                 {name: 'RouteDetail', title: 'Detail', index: 2},
+                {name: 'SearchContainer', title: 'Search', index: 3},
           ];
 
     return(
       //返回导航栏视图，并通过initialRoute显示第一次显示的子页面，initialRouteStack导航栏的子页面路由栈，configureScence导航栏子页面切换动画，navigationBar导航栏标题栏实现，renderScene导航栏路由方式
-      <Navigator
-        style={{flex:1}}
-        initialRoute={pages[0]}
-        initialRouteStack={pages}
-        navigationBar={<Navigator.NavigationBar style={{height: 60,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
-        renderScene={this.renderScene}/>
+      <Screen>
+        <Navigator
+          style={{flex:1}}
+          initialRoute={pages[0]}
+          initialRouteStack={pages}
+          navigationBar={<Navigator.NavigationBar style={{height: 60,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
+          renderScene={this.renderScene}/>
+
+      </Screen>
     );
   }
 });
