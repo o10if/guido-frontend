@@ -45,7 +45,7 @@ export default class RouteDetail extends Component {
     const { restaurant } = this.props;
 
     return (
-      <Screen styleName="paper full-screen">
+      <ScrollView styleName="paper full-screen" style={{marginTop:55}}>
           <MapView
             style={{alignSelf: 'stretch', height: 300}}
             initialRegion={{
@@ -155,7 +155,7 @@ export default class RouteDetail extends Component {
               </View>
             </Row>
           </Screen>
-      </Screen>
+      </ScrollView>
     );
   }
 }
