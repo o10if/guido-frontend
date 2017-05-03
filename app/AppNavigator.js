@@ -3,11 +3,8 @@ var React = require('react');
 var ReactNative = require('react-native');
 
 var {
-  AppRegistry,
-  StyleSheet,
   Navigator,
   Text,
-  Image,
   TouchableOpacity,
   View,
   BackAndroid
@@ -57,7 +54,8 @@ class NavigationBar extends Navigator.NavigationBar {
     let routes = this.props.navState.routeStack;
     if (routes.length) {
       let route = routes[routes.length - 1];
-      if (route.index === 0 || routes.length === 3) {
+      console.log(this.props.navState.routeStack);
+      if (route.name === 'TabView') { // First page (Tab view) => No nav bar
         return null;
       }
     }
@@ -94,18 +92,11 @@ var SearchHome = React.createClass ({
   },
 
   render: function() {
-    const pages = [
-                {name: 'TabView', index: 0},
-                {name: 'SearchResult', index: 1},
-                {name: 'RouteDetail', title: 'Detail', index: 2},
-          ];
-
     return(
       //返回导航栏视图，并通过initialRoute显示第一次显示的子页面，initialRouteStack导航栏的子页面路由栈，configureScence导航栏子页面切换动画，navigationBar导航栏标题栏实现，renderScene导航栏路由方式
       <Navigator
         style={{flex:1}}
-        initialRoute={pages[0]}
-        initialRouteStack={pages}
+        initialRoute={{name: 'TabView'}}
         navigationBar={<NavigationBar style={{height: 55,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
         renderScene={this.renderScene}/>
     );
