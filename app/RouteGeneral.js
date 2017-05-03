@@ -1,3 +1,4 @@
+import { Route, Landmark, Waypoint } from './agent';
 import React, { Component} from 'react';
 import MapView from 'react-native-maps';
 import flag from '../assets/flag.png';
@@ -21,78 +22,70 @@ import {
   NavigationBar,
 } from '@shoutem/ui/navigation';
 
-mapStyle = [];// require('../assets/mapStyle.json');
-
-markers = [
-{
-  title: 'Quai St Vincent',
-  coordinates: {
-    latitude: 45.767184,
-    longitude: 4.829668
-  }
-},
-{
-  title: 'Place Bellecour',
-  coordinates: {
-    latitude: 45.758115,
-    longitude: 4.833609
-  }
-},
-{
-  title: 'Croix-Rousse',
-  coordinates: {
-    latitude: 45.775708,
-    longitude: 4.831610
-  }
-},
-{
-  title: 'Hotel de Ville',
-  coordinates: {
-    latitude: 45.767119,
-    longitude: 4.833660
-  }
-},
-{
-  title: 'Point 4',
-  coordinates: {
-    latitude: 45.761191,
-    longitude: 4.835183
-  }
-},
-{
-  title: 'Plateau Croix-Rousse',
-  coordinates: {
-    latitude:  45.778582,
-    longitude: 4.816948
-  }
-},
-{
-  title: 'Caluire',
-  coordinates: {
-    latitude:  45.784130,
-    longitude: 4.840627
-  }
-},
-{
-  title: 'Croix-Rousse',
-  coordinates: {
-    latitude:  45.779701,
-    longitude: 4.827452
-  }
-}];
-
-polylines = [
-   [{latitude: 45.767119, longitude: 4.833660}, {latitude: 45.761191, longitude: 4.835183}, {latitude: 45.761191, longitude: 4.835774}],
-   [{latitude: 45.778582, longitude: 4.816948}, {latitude: 45.779701, longitude: 4.827452}, {latitude: 45.784130, longitude: 4.840627}],
-];
-
 export default class RouteGeneral extends Component {
-  static propTypes = {
-    restaurant: React.PropTypes.object,
-  };
+  constructor(props) {
+    console.warn("constructor");
+    super(props);
+    this.state = {
+      waypoints: [],
+      landmarks: [],
+      isLoading: true
+    }
+  }
+  async componentDidMount() {
+    console.warn("componentDidMount");
+    let routes = await Route.all();
+    let landmarks = await Landmark.all();
+    let waypoints = [];
+
+    for (i=0; i<routes.length; i++){
+      let routeId = routes[i].id;
+      let detailedRoute = await Route.get(routeId);
+      let waypointList = detailedRoute.waypoints;
+      console.warn(waypointList.length);
+      waypoints.push(waypointList);
+    }
+    this.setState({
+      waypoints: waypoints,
+      landmarks: landmarks,
+      isLoading: false
+    });
+    console.warn("component ->  " + this.state.isLoading);
+  }
 
   render() {
-    //let routes = Route.post('my_id', {'new_route': 1});
+    let waypoints = null;
+    if (this.state.waypoints) {
+      waypoints = this.state.waypoints.map(waypointList => (
+       <MapView.Polyline
+           coordinates={waypointList}
+           strokeColor="#2b2c2c"
+           strokeWidth={2}
+        />));
+    }
+
+    let landmarks = null;
+    if (this.state.landmarks) {
+      landmarks = this.state.landmarks.map(landmark => (
+        <MapView.Marker
+          coordinate={{latitude:landmark.latitude, longitude:landmark.longitude}}
+          title={landmark.title}
+          //description={landmark.properties.description}
+          //image={flag}
+          pinColor="#2b2c2c"
+        />
+      ));
+    }
+
+    let initRegion = {
+      latitude: 45.759623,
+      longitude: 4.833967,
+      latitudeDelta: 0.037,
+      longitudeDelta: 0.038
+    };
+
+    mapStyle = require('../assets/mapStyle.json');
+    
     let routes = Route.search({
       'keywords': 'fourvière',
       'limit': 10,
@@ -103,34 +96,13 @@ export default class RouteGeneral extends Component {
 
     return (
       <Screen styleName="paper full-screen">
-          <MapView
-              style={{alignSelf: 'stretch', height: 900}}
-              initialRegion={{
-                  latitude: 45.759623,
-                  longitude: 4.833967,
-                  latitudeDelta: 0.037,
-                  longitudeDelta: 0.038
-              }}
-              customMapStyle={mapStyle}
-              >
-              { polylines.map(coordinates => (
-                                   <MapView.Polyline
-                                       coordinates={coordinates}
-                                       strokeColor="#2b2c2c"
-                                       strokeWidth={2}
-                                    />
-                               ))
-              }
-              {markers.map(marker => (
-                <MapView.Marker
-                  coordinate={marker.coordinates}
-                  title={marker.title}
-                  description={marker.title}
-                  //image={flag}
-                  pinColor="#2b2c2c"
-                />
-              ))}
-          </MapView>
+        <MapView
+          style={{alignSelf: 'stretch', height: 900}}
+          initialRegion={initRegion}
+          customMapStyle={mapStyle}>
+            { waypoints }
+            { landmarks }
+        </MapView>
       </Screen>
     );
   }

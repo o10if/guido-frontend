@@ -51,11 +51,15 @@ export const Event = {
 };
 
 export const Waypoint = {
+  all: () =>
+    makeRequest(`/waypoints`),
   get: (id) =>
     makeRequest(`/waypoints/${id}`),
 };
 
 export const Landmark = {
+  all: () =>
+    makeRequest(`/landmarks`),
   get: (id) =>
     makeRequest(`/landmarks/${id}`),
 };
