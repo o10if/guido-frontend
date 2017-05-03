@@ -59,6 +59,7 @@ export default class SearchResult extends Component {
 
   render() {
     return (
+      //We can use the pushed props here
       <Screen style={{marginTop:60, flex:1}}>
         <Text>{this.props.texti}</Text>
       </Screen>

@@ -105,7 +105,7 @@ export default class SearchContainer extends Component {
   }
 
   rowPressed(name) {
-
+      //this push sends all props in passProps to the view SearchResult
       this.props.navigator.push({
         title: 'Results',
         name: 'SearchResult',
@@ -116,7 +116,7 @@ export default class SearchContainer extends Component {
 
   onSubmitEditing(event){
     var textSearch = this.state.text;
-
+    //this push sends all props in passProps to the view SearchResult
     this.props.navigator.push({
       title: 'Results',
       name: 'SearchResult',
