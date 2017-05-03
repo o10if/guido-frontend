@@ -83,9 +83,6 @@ export default class RouteList extends Component {
     }
 
   render() {
-    const groupedData = GridRow.groupByRows(this.state.routes, 2, () => {
-      return 1;
-    });
     return (
       <ListView
         data={this.state.routes}

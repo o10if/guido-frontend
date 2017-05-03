@@ -13,7 +13,7 @@ async function makeRequest(url, method, params) {
     if (method == 'POST') {
       body = JSON.stringify(params);
     }
-    let response = await fetch(url, {
+    let response = await fetch(urlReq, {
       method: method,
       headers: {
         'Accept': 'application/json',
