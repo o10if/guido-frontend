@@ -18,6 +18,7 @@ import {
 var SearchResult = require('./SearchResult').default;
 var RouteDetail = require('./RouteDetail').default;
 var TabView = require('./TabView').default;
+var SearchContainer = require('./SearchContainer').default;
 
 //设置导航栏
 var NavigationBarRouteMapper = {
@@ -88,6 +89,8 @@ var SearchHome = React.createClass ({
         return <SearchResult navigator={navigator} {...route.passProps}/>;
       case 'RouteDetail' :
         return <RouteDetail navigator={navigator} {...route.passProps}/>;
+      case 'SearchContainer' :
+        return <SearchContainer navigator={navigator} {...route.passProps}/>;
     }
   },
 
