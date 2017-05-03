@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   tabs: {
     height: 55,
     flexDirection: 'row',
-    paddingTop: 5,
+    paddingTop: 10,
     borderWidth: 1,
     borderTopWidth: 0,
     borderLeftWidth: 0,
@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
   tabView: {
     flex: 1,
     padding: 10,
+    paddingTop: 5,
     backgroundColor: 'rgba(0,0,0,0.01)',
   },
 });

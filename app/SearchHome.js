@@ -44,7 +44,7 @@ var NavigationBarRouteMapper = {
 
   //设置导航栏标题
   Title: function(route,navigator,index,navState) {
-    return (<Text style={{flex:1, fontSize: 18,color: '#373E4D',fontWeight: '500',marginVertical: 15}}>{route.title}</Text>);
+    return (<Text style={{flex:1, fontSize: 18,color: '#373E4D',fontWeight: '500', marginVertical: 15}}>{route.title}</Text>);
   },
 
   //设置导航栏右按钮
@@ -95,7 +95,7 @@ var SearchHome = React.createClass ({
 
   render: function() {
     const pages = [
-                {name: 'TabView', title: 'Guido', index: 0},
+                {name: 'TabView', index: 0},
                 {name: 'SearchResult', index: 1},
                 {name: 'RouteDetail', title: 'Detail', index: 2},
           ];
