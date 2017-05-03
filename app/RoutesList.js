@@ -1,90 +1,86 @@
-import { Route } from './agent';
-
 import React, { Component } from 'react';
 import {
-  Image,
+  Icon,
+  Tile,
+  Divider,
+  Screen,
   ListView,
+  Image,
+  View,
+  Text,
+  Title,
   Subtitle,
   TouchableOpacity,
-  Screen,
-  Text,
-  GridRow,
-  Card,
-  View,
-  Caption,
-  Icon,
 } from '@shoutem/ui';
+
+import RouteDetail from './RouteDetail';
 
 export default class RoutesList extends Component {
 
   constructor(props) {
-    console.warn("constructor");
     super(props);
+    this.renderRow = this.renderRow.bind(this);
     this.state = {
-      routes: [],
-      isLoading: true
+      results: [{
+        "id": "a4b76c9ef67dbf",
+        "description": "trajet1 trajet1 trajet1 trajet1 trajet1 trajet1",
+        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+      }, {
+        "id": "c23fb35ecceafb",
+        "description": "trajet2 trajet2 trajet2 trajet2 trajet2 trajet2",
+        "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
+      }, {
+        "id": "c142e53d23aec",
+        "description": "trajet3 trajet3 trajet3 trajet3 trajet3 trajet3",
+        "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
+      }, {
+        "id": "cedfbcfaebfae",
+        "description": "trajet4 trajet4 trajet4 trajet4 trajet4 trajet4",
+        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+      }],
     }
   }
 
-  async componentDidMount() {
-    console.warn("componentDidMount");
-    let routes = await Route.all();
-    console.warn(routes.toString());
-    this.setState({
-      routes: routes,
-      isLoading: false
-    });
-    console.warn("component ->  " + this.state.isLoading);
+  rowPressed(resultId) {
+      var id = resultId;
+
+      this.props.navigator.push({
+        title: 'Detail',
+        name: 'RouteDetail',
+        component: RouteDetail,
+        passProps: {id: id}
+      });
   }
 
-  renderRow(rowData, sectionId, index) {
-    console.warn("renderRow");
-    const cellViews = rowData.map((path, id) => {
+  renderRow(result) {
     return (
-        <TouchableOpacity key={id} styleName="flexible">
-          <Card styleName="flexible">
-            <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
-            <View styleName="content">
-              <Subtitle numberOfLines={3}>{path.name}</Subtitle>
-              <View styleName="horizontal">
-                <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
-              </View>
-              <View styleName="horizontal">
-                <Caption styleName="collapsible" numberOfLines={2}> </Caption>
-              </View>
-              <View styleName="horizontal">
-                <View styleName="horizontal flexible">
-                  <Icon style={{color: 'gray', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
-                  <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
-                </View>
-                <View styleName="horizontal flexible">
-                  <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
-                  <Caption style={{color: 'gray', flex:1}} >{path.comments}</Caption>
-                </View>
-              </View>
-            </View>
-          </Card>
-        </TouchableOpacity>
-      );
-    });
-    return (
-      <GridRow columns={2}>
-        {cellViews}
-      </GridRow>
+      <TouchableOpacity
+        style={{flex:1}}
+        onPress={()=>this.rowPressed(result.id)}>
+        <View style={{flex:1}}>
+          <Image
+            styleName="large-banner"
+            source={{ uri: result.image.url }}
+          >
+            <Tile>
+              <Title styleName="md-gutter-bottom">Trajet {result.id}</Title>
+              <Subtitle styleName="sm-gutter-horizontal">{result.description}</Subtitle>
+            </Tile>
+          </Image>
+          <Divider styleName="line" />
+        </View>
+      </TouchableOpacity>
     );
   }
 
   render() {
-    console.warn("loading: " + this.state.isLoading);
-    const groupedData = GridRow.groupByRows(this.state.routes, 2, () => {
-      return 1;
-    });
     return (
-      <ListView
-        data={groupedData}
-        loading={this.state.isLoading}
-        renderRow={this.renderRow}
-      />
+      <Screen style={{flex:1}}>
+        <ListView
+          data={this.state.results}
+          renderRow={this.renderRow}
+        />
+      </Screen>
     );
   }
 }
