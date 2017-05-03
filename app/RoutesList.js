@@ -1,4 +1,5 @@
 import { Route } from './agent';
+import { RouteDetail } from './RouteDetail';
 
 import React, { Component } from 'react';
 import {
