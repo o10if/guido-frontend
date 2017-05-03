@@ -11,6 +11,7 @@ import {
   Title,
   Subtitle,
   TouchableOpacity,
+  Caption,
 } from '@shoutem/ui';
 
 import RouteDetail from './RouteDetail';
@@ -25,18 +26,26 @@ export default class RouteList extends Component {
         "id": "a4b76c9ef67dbf",
         "description": "trajet1 trajet1 trajet1 trajet1 trajet1 trajet1",
         "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+        "like": "325",
+        "comments": "626",
       }, {
         "id": "c23fb35ecceafb",
         "description": "trajet2 trajet2 trajet2 trajet2 trajet2 trajet2",
         "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
+        "like": "875",
+        "comments": "623",
       }, {
         "id": "c142e53d23aec",
         "description": "trajet3 trajet3 trajet3 trajet3 trajet3 trajet3",
         "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
+        "like": "290",
+        "comments": "315",
       }, {
         "id": "cedfbcfaebfae",
         "description": "trajet4 trajet4 trajet4 trajet4 trajet4 trajet4",
         "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+        "like": "98",
+        "comments": "24",
       }],
     }
   }
@@ -66,6 +75,16 @@ export default class RouteList extends Component {
               <Title styleName="md-gutter-bottom">Trajet {result.id}</Title>
               <Subtitle styleName="sm-gutter-horizontal">{result.description}</Subtitle>
             </Tile>
+            <View styleName="horizontal" style={{marginTop:150, marginLeft:230}}>
+                            <View styleName="horizontal flexible">
+                              <Icon style={{color: 'white', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
+                              <Caption style={{color: 'white', flex:1}} >{result.like}</Caption>
+                            </View>
+                            <View styleName="horizontal flexible">
+                              <Icon style={{color: 'white', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
+                              <Caption style={{color: 'white', flex:1}} >{result.comments}</Caption>
+                            </View>
+                          </View>
           </Image>
           <Divider styleName="line" />
         </View>
