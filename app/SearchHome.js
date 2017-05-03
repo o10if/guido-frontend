@@ -34,7 +34,7 @@ var NavigationBarRouteMapper = {
           <TouchableOpacity
             underlayColor='transparent'
             onPress={()=>navigator.pop()}>
-            <Icon name="back" style={{marginVertical:20,marginLeft:10}}/>
+            <Icon name="back" style={{marginVertical:17,marginLeft:10}}/>
           </TouchableOpacity>
         </View>
       );
