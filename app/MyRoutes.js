@@ -7,6 +7,7 @@ import {
   Text,
   View,
   Dimensions,
+  TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
 
@@ -40,11 +41,12 @@ mapStyle = [];// require('../assets/mapStyle.json');
     render() {
       return (
         <View>
-          <Text>TRAJETS FAVORIS</Text>
+          <Text onPress={()=>alert("test")}>TRAJETS FAVORIS</Text>
           <CarouselRoutes userId='f4d2ae8b-9cc1-44b9-9da5-f326bd248980' type='favoriteRoutes'/>
           <Text>TRAJETS RECENTS</Text>
           <CarouselRoutes userId='f4d2ae8b-9cc1-44b9-9da5-f326bd248980' type='recentRoutes'/>
         </View>
+
       );
     }
   }
@@ -86,7 +88,8 @@ mapStyle = [];// require('../assets/mapStyle.json');
 
 
         return (
-          <Card style={{width: 200, height: 200}}>
+
+          <Card style={{width: 200, height: 200}} onPress={()=>alert("pressed")}>
             <Image
               styleName="medium-wide"
                 source={{uri: this.props.imageAdress}}
@@ -175,7 +178,7 @@ mapStyle = [];// require('../assets/mapStyle.json');
                                    imageAdress2={favoriteRoutesToShow[i+1].imageUrl} title2={favoriteRoutesToShow[i+1].title} duration2={favoriteRoutesToShow[i+1].duration}/>
           }
           else {
-            currentCarouselItem = <FavoriteRoute imageAdress={this.props.imageAdress1} title={this.props.title1} duration={this.props.duration1}/>
+            currentCarouselItem = <FavoriteRouteDouble imageAdress1={favoriteRoutesToShow[i].imageUrl} title1={favoriteRoutesToShow[i].title} duration1={favoriteRoutesToShow[i].duration}/>
           }
           carouselReactItems.push(currentCarouselItem);
         }
