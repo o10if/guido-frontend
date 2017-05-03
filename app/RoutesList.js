@@ -14,6 +14,7 @@ import {
   Title,
   Subtitle,
   TouchableOpacity,
+  Caption,
 } from '@shoutem/ui';
 
 
@@ -50,38 +51,44 @@ export default class RouteList extends Component {
     });
   }
 
-    renderRow(rowData, sectionId, index) {
-
-      const cellViews = rowData.map((path, id) => {
+    renderRow(path) {
       return (
         <TouchableOpacity
           style={{flex:1}}
-          onPress={()=>this.rowPressed(path.id)}>
+          onPress={()=>this.rowPressed(path)}>
           <View style={{flex:1}}>
             <Image
               styleName="large-banner"
-              source={{ uri: path.image && path.image.url }}
+              source={{ uri: path.imageUrl }}
             >
-              <Tile>
-                <Title styleName="md-gutter-bottom">Trajet {path.id}</Title>
-                <Subtitle styleName="sm-gutter-horizontal">{path.description}</Subtitle>
+              <Tile style={{marginTop:-50}}>
+                <Title styleName="md-gutter-bottom" style={{marginLeft:-30}}>{path.title}</Title>
+                <Subtitle styleName="sm-gutter-horizontal" style={{marginLeft:-30}}>{path.description}</Subtitle>
               </Tile>
+              <View styleName="horizontal" style={{marginTop:150, marginRight:0}}>
+                <View styleName="horizontal flexible">
+                  <Icon style={{color: 'white', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
+                  <Caption style={{color: 'white', flex:1}} >{path.likes}</Caption>
+                </View>
+                <View styleName="horizontal flexible">
+                  <Icon style={{color: 'white', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
+                  <Caption style={{color: 'white', flex:1}} >{path.comments}</Caption>
+                </View>
+              </View>
             </Image>
             <Divider styleName="line" />
           </View>
         </TouchableOpacity>
-        );
-      });
+      );
     }
 
   render() {
-    console.warn("loading: " + this.state.isLoading);
     const groupedData = GridRow.groupByRows(this.state.routes, 2, () => {
       return 1;
     });
     return (
       <ListView
-        data={groupedData}
+        data={this.state.routes}
         loading={this.state.isLoading}
         renderRow={this.renderRow}
       />
