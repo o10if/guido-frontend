@@ -1,8 +1,8 @@
 import React from 'react';
-import SearchHome from './SearchHome';
+import AppNavigator from './AppNavigator';
 
 export default React.createClass({
   render() {
-    return <SearchHome />
+    return <AppNavigator />
   },
 });
