@@ -85,7 +85,7 @@ polylines = [
    [{latitude: 45.778582, longitude: 4.816948}, {latitude: 45.779701, longitude: 4.827452}, {latitude: 45.784130, longitude: 4.840627}],
 ];
 
-export default class RouteDetail extends Component {
+export default class RouteGeneral extends Component {
   static propTypes = {
     restaurant: React.PropTypes.object,
   };
@@ -95,7 +95,6 @@ export default class RouteDetail extends Component {
 
     return (
       <Screen styleName="paper full-screen">
-
           <MapView
               style={{alignSelf: 'stretch', height: 900}}
               initialRegion={{
