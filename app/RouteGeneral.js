@@ -1,26 +1,11 @@
 import React, { Component} from 'react';
 import MapView from 'react-native-maps';
-import flag from '../assets/flag.png';
 
 import {
-  ScrollView,
-  Icon,
-  Row,
-  Subtitle,
-  Text,
-  Title,
-  View,
-  Image,
-  Divider,
-  Tile,
   Screen,
 } from '@shoutem/ui';
 
-import {
-  NavigationBar,
-} from '@shoutem/ui/navigation';
-
-mapStyle = [];// require('../assets/mapStyle.json');
+const mapStyle = []; // require('../assets/mapStyle.json');
 
 markers = [
 {
@@ -92,7 +77,7 @@ export default class RouteGeneral extends Component {
 
   render() {
     const { restaurant } = this.props;
-
+    // TODO change key ?
     return (
       <Screen styleName="paper full-screen">
           <MapView
@@ -110,6 +95,7 @@ export default class RouteGeneral extends Component {
                                        coordinates={coordinates}
                                        strokeColor="#2b2c2c"
                                        strokeWidth={2}
+                                       key={JSON.stringify(coordinates)}
                                     />
                                ))
               }
@@ -118,6 +104,7 @@ export default class RouteGeneral extends Component {
                   coordinate={marker.coordinates}
                   title={marker.title}
                   description={marker.title}
+                  key={JSON.stringify(marker.coordinates)}
                   //image={flag}
                   pinColor="#2b2c2c"
                 />
