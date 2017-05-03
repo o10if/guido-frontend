@@ -126,6 +126,7 @@ export default class SearchContainer extends Component {
   }
 
   render() {
+    
     return (
       <View style={{marginTop: 50}}>
       <View style={{marginBottom:5, marginTop: 15, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>

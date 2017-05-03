@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import MapView from 'react-native-maps';
-import { Route } from './agent';
+import { Route, Landmark } from './agent';
+import RouteDetail from './RouteDetail';
 
 import {
   Screen,
@@ -12,7 +13,7 @@ import {
 
 export default class RouteGeneral extends Component {
   constructor(props) {
-    console.warn("constructor");
+
     super(props);
     this.state = {
       waypoints: [],
@@ -21,7 +22,7 @@ export default class RouteGeneral extends Component {
     }
   }
   async componentDidMount() {
-    console.warn("componentDidMount");
+
     let routes = await Route.all();
     let landmarks = await Landmark.all();
     let waypoints = [];
@@ -30,7 +31,7 @@ export default class RouteGeneral extends Component {
       let routeId = routes[i].id;
       let detailedRoute = await Route.get(routeId);
       let waypointList = detailedRoute.waypoints;
-      console.warn(waypointList.length);
+
       waypoints.push(waypointList);
     }
     this.setState({
@@ -38,7 +39,19 @@ export default class RouteGeneral extends Component {
       landmarks: landmarks,
       isLoading: false
     });
-    console.warn("component ->  " + this.state.isLoading);
+
+  }
+
+  rowPressed(marker) {
+    var id = marker.id;
+    var name = marker.name;
+
+    this.props.navigator.push({
+      title: name,
+      name: 'RouteDetail',
+      component: RouteDetail,
+      passProps: {id: id}
+    });
   }
 
   render() {
@@ -60,6 +73,7 @@ export default class RouteGeneral extends Component {
           title={landmark.title}
           //description={landmark.properties.description}
           //image={flag}
+          onPress={()=>this.rowPressed(landmark)}
           pinColor="#2b2c2c"
         />
       ));
@@ -73,13 +87,6 @@ export default class RouteGeneral extends Component {
     };
 
     mapStyle = require('../assets/mapStyle.json');
-
-    let routes = Route.search({
-      'keywords': 'fourvière',
-      'limit': 10,
-      'tags': ['lol', 'lolipop'],
-      'near': {'latMin': 35.2, 'latMax': 12.2, 'longMin': 12.1, 'longMax': 4.5},
-    });
 
     return (
       <Screen styleName="paper full-screen">

@@ -22,7 +22,7 @@ export default React.createClass({
         <RouteSearchBar navigator={this.props.navigator}/>
       </ScrollView>
       <ScrollView tabLabel="ios-navigate" style={styles.tabView}>
-        <RouteGeneral/>
+        <RouteGeneral navigator={this.props.navigator}/>
       </ScrollView>
       <ScrollView tabLabel="ios-person" style={styles.tabView}>
         <MyRoutes/>

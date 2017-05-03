@@ -31,14 +31,14 @@ export default class RouteList extends Component {
     }
 
   async componentDidMount() {
-    console.warn("componentDidMount");
+
     let routes = await Route.all();
-    console.warn(routes.toString());
+
     this.setState({
       routes: routes,
       isLoading: false
     });
-    console.warn("component ->  " + this.state.isLoading);
+
   }
 
   rowPressed(resultId) {
@@ -56,7 +56,7 @@ export default class RouteList extends Component {
       return (
         <TouchableOpacity
           style={{flex:1}}
-          onPress={()=>this.rowPressed(path)}>
+          onPress={()=>this.rowPressed(path.id)}>
           <View style={{flex:1}}>
             <Image
               styleName="large-banner"
@@ -84,6 +84,7 @@ export default class RouteList extends Component {
     }
 
   render() {
+
     return (
       <ListView
         data={this.state.routes}

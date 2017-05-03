@@ -24,7 +24,7 @@ async function makeRequest(url, method, params) {
     let responseJson = await response.json();
     return responseJson;
   } catch(error) {
-    console.warn(error);
+
   }
 }
 
