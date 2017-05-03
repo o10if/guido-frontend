@@ -39,7 +39,11 @@ export const Route = {
     makeRequest(`/routes/${id}`, 'POST', route),
 };
 
-export const PreferredRoutes = makeRequest(`/routes`);
+export const FavoriteRouteReq = {
+  get: (id) =>
+    makeRequest(`/users/${id}`)
+};
+
 
 
 
