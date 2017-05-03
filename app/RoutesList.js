@@ -1,136 +1,86 @@
 import React, { Component } from 'react';
 import {
-  Image,
+  Icon,
+  Tile,
+  Divider,
+  Screen,
   ListView,
+  Image,
+  View,
+  Text,
+  Title,
   Subtitle,
   TouchableOpacity,
-  Screen,
-  Text,
-  GridRow,
-  Card,
-  View,
-  Caption,
-  Icon,
 } from '@shoutem/ui';
 
-export default class RoutesList extends Component {
+import RouteDetail from './RouteDetail';
 
-    constructor(props) {
-      super(props);
-      this.renderRow = this.renderRow.bind(this);
-      this.state = {
-        paths: [{
-          "name": "Trajet1",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "like": "125",
-          "comments": "468",
-        }, {
-          "name": "Trajet2",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
-          "like": "1332",
-          "comments": "432",
-        }, {
-          "name": "Trajet3",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
-          "like": "1232",
-          "comments": "238",
-        }, {
-          "name": "Trajet4",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg"  },
-          "like": "65",
-          "comments": "544",
-        }, {
-          "name": "Trajet5",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "154",
-          "comments": "542",
-        }, {
-          "name": "Trajet6",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "542",
-          "comments": "98",
-        }, {
-          "name": "Trajet7",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "like": "643",
-          "comments": "26",
-        }, {
-          "name": "Trajet8",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "357",
-          "comments": "37",
-        }, {
-          "name": "Trajet9",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "876",
-          "comments": "537",
-        }, {
-          "name": "Trajet10",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "like": "56",
-          "comments": "54",
-        }],
-      }
+export default class RouteList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.renderRow = this.renderRow.bind(this);
+    this.state = {
+      results: [{
+        "id": "a4b76c9ef67dbf",
+        "description": "trajet1 trajet1 trajet1 trajet1 trajet1 trajet1",
+        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+      }, {
+        "id": "c23fb35ecceafb",
+        "description": "trajet2 trajet2 trajet2 trajet2 trajet2 trajet2",
+        "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
+      }, {
+        "id": "c142e53d23aec",
+        "description": "trajet3 trajet3 trajet3 trajet3 trajet3 trajet3",
+        "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
+      }, {
+        "id": "cedfbcfaebfae",
+        "description": "trajet4 trajet4 trajet4 trajet4 trajet4 trajet4",
+        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+      }],
     }
+  }
 
-    renderRow(rowData, sectionId, index) {
+  rowPressed(resultId) {
+      var id = resultId;
 
-      const cellViews = rowData.map((path, id) => {
-      return (
-          <TouchableOpacity key={id} styleName="flexible">
-            <Card styleName="flexible">
-              <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
-              <View styleName="content">
-                <Subtitle numberOfLines={3}>{path.name}</Subtitle>
-                <View styleName="horizontal">
-                  <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
-                </View>
-                <View styleName="horizontal">
-                  <Caption styleName="collapsible" numberOfLines={2}> </Caption>
-                </View>
-                <View styleName="horizontal">
-                  <View styleName="horizontal flexible">
-                    <Icon style={{color: 'gray', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
-                    <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
-                  </View>
-                  <View styleName="horizontal flexible">
-                    <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
-                    <Caption style={{color: 'gray', flex:1}} >{path.comments}</Caption>
-                  </View>
-                </View>
-              </View>
-            </Card>
-          </TouchableOpacity>
-        );
+      this.props.navigator.push({
+        title: 'Detail',
+        name: 'RouteDetail',
+        component: RouteDetail,
+        passProps: {id: id}
       });
-      return (
-        <GridRow columns={2}>
-          {cellViews}
-        </GridRow>
-      );
-    }
+  }
 
-    render() {
-      const groupedData = GridRow.groupByRows(this.state.paths, 2, () => {
-        return 1;
-      });
-      return (
-        <Screen>
-          <ListView
-            data={groupedData}
-            renderRow={this.renderRow}
-          />
-        </Screen>
-      );
-    }
+  renderRow(result) {
+    return (
+      <TouchableOpacity
+        style={{flex:1}}
+        onPress={()=>this.rowPressed(result.id)}>
+        <View style={{flex:1}}>
+          <Image
+            styleName="large-banner"
+            source={{ uri: result.image.url }}
+          >
+            <Tile>
+              <Title styleName="md-gutter-bottom">Trajet {result.id}</Title>
+              <Subtitle styleName="sm-gutter-horizontal">{result.description}</Subtitle>
+            </Tile>
+          </Image>
+          <Divider styleName="line" />
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
+  render() {
+    return (
+      <Screen style={{flex:1}}>
+        <ListView
+          data={this.state.results}
+          renderRow={this.renderRow}
+        />
+      </Screen>
+    );
+  }
 }
