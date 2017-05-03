@@ -1,5 +1,6 @@
-import React, { Component} from 'react';
+import React, { StyleSheet, Component} from 'react';
 import MapView from 'react-native-maps';
+import { PreferredRoutes } from './agent';
 
 import {
   ListView,
@@ -32,32 +33,18 @@ import {
 
 mapStyle = [];// require('../assets/mapStyle.json');
 
-  /*
-  class FavoriteRoute extends Component {
-    // Initialize the hardcoded data
-    constructor(props) {
-      super(props);
-    }
-
-    render() {
-      return (
-        <Image source={{uri: this.props.imageAdress}} style={{width: 60, height: 60}}/>
-      );
-    }
-  }
-  */
-
 
   /** Main component **/
   export default class MyRoutes extends Component {
     render() {
+
+    //alert(PreferredRoutes["_65"][0].description);
       return (
         <View>
           <Text>TRAJETS FAVORIS</Text>
           <CarouselExample />
           <Text>TRAJETS RECENTS</Text>
           <CarouselExample />
-          <ListViewBasics/>
         </View>
       );
     }
@@ -65,6 +52,7 @@ mapStyle = [];// require('../assets/mapStyle.json');
 
 
   /** Components **/
+  // A favorite route card component
   class FavoriteRoute extends Component {
       // Initialize the hardcoded data
       constructor(props) {
@@ -79,36 +67,32 @@ mapStyle = [];// require('../assets/mapStyle.json');
                 source={{uri: this.props.imageAdress}}
             />
             <View styleName="content">
-              <Subtitle>Choosing The Right Boutique Hotel For You</Subtitle>
-              <Caption>21 hours ago</Caption>
+              <Subtitle>{this.props.description}</Subtitle>
+              <Caption>{this.props.duration} hours ago</Caption>
             </View>
           </Card>
         );
       }
    }
 
-   class ListViewBasics extends Component {
-     // Initialize the hardcoded data
-     constructor(props) {
-       super(props);
-       const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-       this.state = {
-         dataSource: ds.cloneWithRows([
-           'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-         ])
-       };
-     }
-     render() {
-       return (
-         <View style={{flex: 1, paddingTop: 22}}>
-           <ListView
-             horizontal={true}
-             dataSource={this.state.dataSource}
-             renderRow={(rowData) => <Text>{rowData}</Text>}
-           />
-         </View>
-       );
-     }
+   // Two FavoriteRoute elements side by side, for the Carousel
+   class FavoriteRouteDouble extends Component {
+      constructor(props) {
+            super(props);
+          }
+
+       render() {
+        return (
+          <View style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start'}}>
+              <FavoriteRoute imageAdress={this.props.imageAdress1} description={this.props.description1} duration={this.props.duration1}/>
+              <FavoriteRoute imageAdress={this.props.imageAdress2} description={this.props.description2} duration={this.props.duration2}/>
+           </View>
+        );
+       }
    }
 
    class CarouselExample extends Component {
@@ -128,10 +112,13 @@ mapStyle = [];// require('../assets/mapStyle.json');
        }
 
        render() {
+       // Ignoring warning caused by a 'hack' of the Carousel leftArrowText and RightArrowText property
        console.ignoredYellowBox = [
          "Warning: Failed prop type: Invalid prop `leftArrowText` of type `object` supplied to `Carousel`",
          "Warning: Failed prop type: Invalid prop `rightArrowText` of type `object` supplied to `Carousel`"
         ];
+
+
          return (
            <View style={{ flex: 1 }} onLayout={this._onLayoutDidChange}>
              <Carousel
@@ -154,34 +141,14 @@ mapStyle = [];// require('../assets/mapStyle.json');
                arrowsStyle = {{marginLeft: 20}}
                onAnimateNextPage={(p) => console.log(p)}
              >
-             <View style={{
-                                      flex: 1,
-                                      flexDirection: 'row',
-                                      justifyContent: 'space-between',
-                                      alignItems: 'flex-start',
-                                    }}>
-                  <FavoriteRoute imageAdress='http://www.citizenkid.com/application/views/images/media/37/original/balade-velo-foret-181752.jpg'/>
-                  <FavoriteRoute imageAdress='https://files.sympa-sympa.com/files/news/part_3/32910/516860-Frida-Kahlo-Street-Art-by-Marko-in-Paris-France-1-900-be87622781-1479902796.jpg'/>
-                </View>
-               <View style={{
-                                                     flex: 1,
-                                                     flexDirection: 'row',
-                                                     justifyContent: 'space-between',
-                                                     alignItems: 'flex-start',
-                                                   }}>
-                  <FavoriteRoute imageAdress='https://files.sympa-sympa.com/files/news/part_3/32910/516860-Frida-Kahlo-Street-Art-by-Marko-in-Paris-France-1-900-be87622781-1479902796.jpg'/>
-                   <FavoriteRoute imageAdress='http://www.citizenkid.com/application/views/images/media/37/original/balade-velo-foret-181752.jpg'/>
-               </View>
-               <View style={{
-                                                                    flex: 1,
-                                                                    flexDirection: 'row',
-                                                                    justifyContent: 'space-between',
-                                                                    alignItems: 'flex-start',
-                                                                  }}>
-                                 <FavoriteRoute imageAdress='https://files.sympa-sympa.com/files/news/part_3/32910/516860-Frida-Kahlo-Street-Art-by-Marko-in-Paris-France-1-900-be87622781-1479902796.jpg'/>
-                                  <FavoriteRoute imageAdress='http://www.citizenkid.com/application/views/images/media/37/original/balade-velo-foret-181752.jpg'/>
-               </View>
+               <FavoriteRouteDouble imageAdress1='http://www.lyon-france.com/var/ez_site/storage/images/media/images/evenements/fete-des-lumieres-place-des-terreaux4/4249406-1-fre-FR/Fete-des-Lumieres-Place-des-Terreaux_reference.jpg'
+                                    imageAdress2='https://files.sympa-sympa.com/files/news/part_3/32910/516860-Frida-Kahlo-Street-Art-by-Marko-in-Paris-France-1-900-be87622781-1479902796.jpg' />
 
+               <FavoriteRouteDouble imageAdress1='https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Au_dessus_du_quartier_Saint-Jean.jpg/300px-Au_dessus_du_quartier_Saint-Jean.jpg'
+                                    imageAdress2='https://cdn.aderly.fr/uploads/2014/10/Rue-Saint-JeanLyon-2013-%C2%A9www.gmd-photographe.fr_.jpg' />
+
+               <FavoriteRouteDouble imageAdress1='http://www.lyon-france.com/var/ez_site/storage/images/media/mises-en-avant/images/musee-des-confluences/4272712-8-fre-FR/Musee-des-Confluences_banniere2.jpg'
+                                    imageAdress2='http://www.dockouest.com/image/contenu/que_voir_que_faire/colline-fourviere-basilique.jpg' />
              </Carousel>
            </View>
 
