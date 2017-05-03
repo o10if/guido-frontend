@@ -23,60 +23,70 @@ export default class SearchResult extends Component {
       this.state = {
         paths: [{
           "id": "a4b76c9ef67dbf",
+          "name": "Trajet1",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
           "like": "125",
           "comments": "468",
         }, {
           "id": "c23fb35ecceafb",
+          "name": "Trajet2",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
           "like": "1332",
           "comments": "432",
         }, {
           "id": "c142e53d23aec",
+          "name": "Trajet3",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
           "like": "1232",
           "comments": "238",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet4",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg"  },
           "like": "65",
           "comments": "544",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet5",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
           "like": "154",
           "comments": "542",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet6",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
           "like": "542",
           "comments": "98",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet7",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
           "like": "643",
           "comments": "26",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet8",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
           "like": "357",
           "comments": "37",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet9",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
           "like": "876",
           "comments": "537",
         }, {
           "id": "cedfbcfaebfae",
+          "name": "Trajet10",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
           "like": "56",
@@ -85,11 +95,12 @@ export default class SearchResult extends Component {
       }
     }
 
-    rowPressed(resultId) {
-      var id = resultId;
+    rowPressed(result) {
+      var id = result.id;
+      var name = result.name;
 
       this.props.navigator.push({
-        title: 'Detail',
+        title: name,
         name: 'RouteDetail',
         component: RouteDetail,
         passProps: {id: id}
@@ -100,11 +111,11 @@ export default class SearchResult extends Component {
 
       const cellViews = result.map((path, id) => {
       return (
-          <TouchableOpacity key={id} styleName="flexible" onPress={()=>this.rowPressed(result.id)}>
+          <TouchableOpacity key={id} styleName="flexible" onPress={()=>this.rowPressed(result)}>
             <Card styleName="flexible">
               <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
               <View styleName="content">
-                <Subtitle numberOfLines={3}>{this.props.text} {path.id}</Subtitle>
+                <Subtitle numberOfLines={3}>{this.props.text} {path.name} {path.id}</Subtitle>
                 <View styleName="horizontal">
                   <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
                 </View>
@@ -139,6 +150,9 @@ export default class SearchResult extends Component {
       });
       return (
         <Screen style={{flex:1, marginTop:60}}>
+          <View style={{marginTop:10,marginLeft:5,marginBottom:5}}>
+            <Text>Results for "{this.props.text}":</Text>
+          </View>
           <ListView
             data={groupedData}
             renderRow={this.renderRow}

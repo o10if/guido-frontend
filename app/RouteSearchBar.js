@@ -14,13 +14,13 @@ export default class RouteSearchBar extends Component {
   }
 
   onSubmitEditing(event){
-    var textRearch = this.state.text;
+    var textSearch = this.state.text;
 
     this.props.navigator.push({
-      title: 'Results',
+      title: textSearch,
       name: 'SearchResult',
       component: SearchResult,
-      passProps: {text: textRearch}
+      passProps: {text: textSearch}
     });
   }
   render() {
