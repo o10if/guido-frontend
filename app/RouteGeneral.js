@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
 import MapView from 'react-native-maps';
 import flag from '../assets/flag.png';
+import { Route } from './agent';
 
 import {
   ScrollView,
@@ -91,6 +92,13 @@ export default class RouteGeneral extends Component {
   };
 
   render() {
+    //let routes = Route.post('my_id', {'new_route': 1});
+    let routes = Route.search({
+      'keywords': 'fourvière',
+      'limit': 10,
+      'tags': ['lol', 'lolipop'],
+      'near': {'latMin': 35.2, 'latMax': 12.2, 'longMin': 12.1, 'longMax': 4.5},
+    });
     const { restaurant } = this.props;
 
     return (
