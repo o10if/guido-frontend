@@ -128,16 +128,21 @@ export default class SearchContainer extends Component {
   render() {
     return (
       <View style={{marginTop: 50}}>
-        <View style={{flexDirection: 'row', margin:25, height:25}}>
-          <Icon name="search" style={{marginTop: 3}}/>
-          <TextInput
-              style={{flex: 1, height: 35, fontSize: 15, paddingBottom: 5}}
-              ref= {(el) => { this.text = el; }}
-              onChangeText={(text) => this.setState({text})}
-              onSubmitEditing={this.onSubmitEditing.bind(this)}
-              value={this.state.text}
-          />
-        </View>
+      <View style={{marginBottom:5, marginTop: 15, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
+        <Icon
+          style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
+          name="search" />
+        <TextInput
+          returnKeyType = "search"
+          underlineColorAndroid='transparent'
+          style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
+          placeholder="Rechercher"
+          value={this.state.text}
+          onChangeText={(text) => this.setState({text})}
+          onSubmitEditing={this.onSubmitEditing.bind(this)}
+
+        />
+      </View>
         <View>
           <ListView
             data={tags}
