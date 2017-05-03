@@ -15,6 +15,7 @@
     "react-native-looped-carousel": "^0.1.5",
     "react-native-maps": "^0.13.0",
     "react-native-scrollable-tab-view": "^0.7.4",
+    "react-native-searchbar": "^1.10.0",
     "react-native-snap-carousel": "^2.1.2",
     "react-navigation": "^1.0.0-beta.7",
     "react-redux": "^4.4.5",
