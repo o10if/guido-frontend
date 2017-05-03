@@ -1,47 +1,91 @@
 import React, { Component } from 'react';
 import {
-  Icon,
-  Tile,
-  Divider,
-  Screen,
-  ListView,
   Image,
-  View,
-  Text,
-  Title,
+  ListView,
   Subtitle,
   TouchableOpacity,
+  Screen,
+  Text,
+  GridRow,
+  Card,
+  View,
+  Caption,
+  Icon,
 } from '@shoutem/ui';
 
 import RouteDetail from './RouteDetail';
 
 export default class SearchResult extends Component {
 
-  constructor(props) {
-    super(props);
-    this.renderRow = this.renderRow.bind(this);
-    this.state = {
-      results: [{
-        "id": "a4b76c9ef67dbf",
-        "description": "trajet1 trajet1 trajet1 trajet1 trajet1 trajet1",
-        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-      }, {
-        "id": "c23fb35ecceafb",
-        "description": "trajet2 trajet2 trajet2 trajet2 trajet2 trajet2",
-        "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
-      }, {
-        "id": "c142e53d23aec",
-        "description": "trajet3 trajet3 trajet3 trajet3 trajet3 trajet3",
-        "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
-      }, {
-        "id": "cedfbcfaebfae",
-        "description": "trajet4 trajet4 trajet4 trajet4 trajet4 trajet4",
-        "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-      }],
+    constructor(props) {
+      super(props);
+      this.renderRow = this.renderRow.bind(this);
+      this.state = {
+        paths: [{
+          "id": "a4b76c9ef67dbf",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+          "like": "125",
+          "comments": "468",
+        }, {
+          "id": "c23fb35ecceafb",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
+          "like": "1332",
+          "comments": "432",
+        }, {
+          "id": "c142e53d23aec",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
+          "like": "1232",
+          "comments": "238",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg"  },
+          "like": "65",
+          "comments": "544",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "like": "154",
+          "comments": "542",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "like": "542",
+          "comments": "98",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+          "like": "643",
+          "comments": "26",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "like": "357",
+          "comments": "37",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
+          "like": "876",
+          "comments": "537",
+        }, {
+          "id": "cedfbcfaebfae",
+          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
+          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
+          "like": "56",
+          "comments": "54",
+        }],
+      }
     }
-  }
 
-  rowPressed(resultId) {
+    rowPressed(resultId) {
       var id = resultId;
 
       this.props.navigator.push({
@@ -50,37 +94,56 @@ export default class SearchResult extends Component {
         component: RouteDetail,
         passProps: {id: id}
       });
-  }
+    }
 
-  renderRow(result) {
-    return (
-      <TouchableOpacity
-        style={{flex:1}}
-        onPress={()=>this.rowPressed(result.id)}>
-        <View style={{flex:1}}>
-          <Image
-            styleName="large-banner"
-            source={{ uri: result.image.url }}
-          >
-            <Tile>
-              <Title styleName="md-gutter-bottom">{this.props.text} Trajet {result.id}</Title>
-              <Subtitle styleName="sm-gutter-horizontal">{result.description}</Subtitle>
-            </Tile>
-          </Image>
-          <Divider styleName="line" />
-        </View>
-      </TouchableOpacity>
-    );
-  }
+    renderRow(result, sectionId, index) {
 
-  render() {
-    return (
-      <Screen style={{marginTop:60, flex:1}}>
-        <ListView
-          data={this.state.results}
-          renderRow={this.renderRow}
-        />
-      </Screen>
-    );
-  }
+      const cellViews = result.map((path, id) => {
+      return (
+          <TouchableOpacity key={id} styleName="flexible" onPress={()=>this.rowPressed(result.id)}>
+            <Card styleName="flexible">
+              <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
+              <View styleName="content">
+                <Subtitle numberOfLines={3}>{this.props.text} {path.id}</Subtitle>
+                <View styleName="horizontal">
+                  <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
+                </View>
+                <View styleName="horizontal">
+                  <Caption styleName="collapsible" numberOfLines={2}> </Caption>
+                </View>
+                <View styleName="horizontal">
+                  <View styleName="horizontal flexible">
+                    <Icon style={{color: 'gray', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
+                    <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
+                  </View>
+                  <View styleName="horizontal flexible">
+                    <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
+                    <Caption style={{color: 'gray', flex:1}} >{path.comments}</Caption>
+                  </View>
+                </View>
+              </View>
+            </Card>
+          </TouchableOpacity>
+        );
+      });
+      return (
+        <GridRow columns={2}>
+          {cellViews}
+        </GridRow>
+      );
+    }
+
+    render() {
+      const groupedData = GridRow.groupByRows(this.state.paths, 2, () => {
+        return 1;
+      });
+      return (
+        <Screen style={{flex:1, marginTop:60}}>
+          <ListView
+            data={groupedData}
+            renderRow={this.renderRow}
+          />
+        </Screen>
+      );
+    }
 }
