@@ -26,7 +26,7 @@ export default class RouteSearchBar extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-        <View style={{marginBottom:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 8, flexDirection: 'row'}}>
+        <View style={{marginBottom:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
           <Icon
             style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
             name="search" />
@@ -34,7 +34,7 @@ export default class RouteSearchBar extends Component {
             returnKeyType = "search"
             underlineColorAndroid='transparent'
             style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
-            placeholder="Type here to search route"
+            placeholder="Rechercher"
             value={this.state.text}
             onChangeText={(text) => this.setState({text})}
             onSubmitEditing={this.onSubmitEditing.bind(this)}
