@@ -84,7 +84,7 @@ var SearchHome = React.createClass ({
   render: function() {
     const pages = [
                 {name: 'RouteSearchBar', title: 'Guido', index: 0},
-                {name: 'SearchResult', title: 'Results', index: 1},
+                {name: 'SearchResult', index: 1},
                 {name: 'RouteDetail', title: 'Detail', index: 2},
           ];
 
