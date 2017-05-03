@@ -2,11 +2,10 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   tab: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 10,
-    width: 30
+    width: 80,
   },
   tabs: {
     height: 55,
@@ -18,6 +17,8 @@ export const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderBottomColor: 'rgba(0,0,0,0.05)',
     backgroundColor: 'rgb(255,255,255)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tabView: {
     flex: 1,

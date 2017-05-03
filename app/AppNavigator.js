@@ -95,7 +95,6 @@ var SearchHome = React.createClass ({
     return(
       //返回导航栏视图，并通过initialRoute显示第一次显示的子页面，initialRouteStack导航栏的子页面路由栈，configureScence导航栏子页面切换动画，navigationBar导航栏标题栏实现，renderScene导航栏路由方式
       <Navigator
-        style={{flex:1}}
         initialRoute={{name: 'TabView'}}
         navigationBar={<NavigationBar style={{height: 55,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
         renderScene={this.renderScene}/>
