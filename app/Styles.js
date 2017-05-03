@@ -6,9 +6,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 10,
+    width: 30
   },
   tabs: {
-    height: 45,
+    height: 55,
     flexDirection: 'row',
     paddingTop: 5,
     borderWidth: 1,
@@ -16,6 +17,7 @@ export const styles = StyleSheet.create({
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: 'rgb(255,255,255)',
   },
   tabView: {
     flex: 1,
