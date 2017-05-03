@@ -10,6 +10,7 @@ var {
   Image,
   TouchableOpacity,
   View,
+  BackAndroid
 } = ReactNative;
 
 import {
@@ -17,23 +18,16 @@ import {
 } from '@shoutem/ui';
 
 //引入子页面
-var RouteSearchBar = require('./RouteSearchBar').default;
 var SearchResult = require('./SearchResult').default;
 var RouteDetail = require('./RouteDetail').default;
+var TabView = require('./TabView').default;
 
 //设置导航栏
 var NavigationBarRouteMapper = {
   //设置导航栏左按钮
   LeftButton: function(route,navigator,index,navState) {
     if(index === 0){
-      return (
-        <View style={{flex:1}}>
-          <TouchableOpacity
-            underlayColor='transparent'>
-            <Icon name="sidebar" style={{marginVertical:20,marginLeft:10}}/>
-          </TouchableOpacity>
-        </View>
-      );
+      return;
     }else{
       return(
         <View style={{flex:1}}>
@@ -55,25 +49,43 @@ var NavigationBarRouteMapper = {
 
   //设置导航栏右按钮
   RightButton: function(route,navigator,index,navState) {
-    return (
-      <View style={{flex:1}}>
-        <TouchableOpacity
-          underlayColor='transparent'>
-          <Icon name="settings" style={{marginVertical:20,marginRight:10}}/>
-        </TouchableOpacity>
-      </View>
-    );
   }
 };
+
+class NavigationBar extends Navigator.NavigationBar {
+  render() {
+    let routes = this.props.navState.routeStack;
+    if (routes.length) {
+      let route = routes[routes.length - 1];
+      if (route.index === 0 || routes.length === 3) {
+        return null;
+      }
+    }
+
+    return super.render();
+  }
+}
+
+
+let globalNavigator;
+// back button
+BackAndroid.addEventListener('hardwareBackPress', () => {
+  if (globalNavigator && globalNavigator.getCurrentRoutes().length > 1) {
+    globalNavigator.pop();
+    return true;
+  }
+  return false;
+});
 
 var SearchHome = React.createClass ({
 
   //设置导航子页面导航路由方式
   renderScene: function(route, navigator) {
     this._navigator = navigator;
+    globalNavigator = navigator;
     switch(route.name) {
-      case 'RouteSearchBar':
-        return <RouteSearchBar navigator={navigator} {...route.passProps}/>;
+      case 'TabView':
+        return <TabView navigator={navigator} {...route.passProps}/>;
       case 'SearchResult' :
         return <SearchResult navigator={navigator} {...route.passProps}/>;
       case 'RouteDetail' :
@@ -83,7 +95,7 @@ var SearchHome = React.createClass ({
 
   render: function() {
     const pages = [
-                {name: 'RouteSearchBar', title: 'Guido', index: 0},
+                {name: 'TabView', title: 'Guido', index: 0},
                 {name: 'SearchResult', index: 1},
                 {name: 'RouteDetail', title: 'Detail', index: 2},
           ];
@@ -94,7 +106,7 @@ var SearchHome = React.createClass ({
         style={{flex:1}}
         initialRoute={pages[0]}
         initialRouteStack={pages}
-        navigationBar={<Navigator.NavigationBar style={{height: 60,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
+        navigationBar={<NavigationBar style={{height: 55,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
         renderScene={this.renderScene}/>
     );
   }
