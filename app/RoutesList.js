@@ -2,29 +2,32 @@ import { Route } from './agent';
 
 import React, { Component } from 'react';
 import {
-  Image,
+  Icon,
+  Tile,
+  Divider,
+  Screen,
   ListView,
+  Image,
+  GridRow,
+  View,
+  Text,
+  Title,
   Subtitle,
   TouchableOpacity,
-  Screen,
-  Text,
-  GridRow,
-  Card,
-  View,
   Caption,
-  Icon,
 } from '@shoutem/ui';
 
-export default class RoutesList extends Component {
 
-  constructor(props) {
-    console.warn("constructor");
-    super(props);
-    this.state = {
-      routes: [],
-      isLoading: true
+export default class RouteList extends Component {
+
+    constructor(props) {
+      super(props);
+      this.renderRow = this.renderRow.bind(this);
+      this.state = {
+        routes: [],
+        isLoading: true
+      }
     }
-  }
 
   async componentDidMount() {
     console.warn("componentDidMount");
@@ -37,51 +40,55 @@ export default class RoutesList extends Component {
     console.warn("component ->  " + this.state.isLoading);
   }
 
-  renderRow(rowData, sectionId, index) {
-    console.warn("renderRow");
-    const cellViews = rowData.map((path, id) => {
-    return (
-        <TouchableOpacity key={id} styleName="flexible">
-          <Card styleName="flexible">
-            <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
-            <View styleName="content">
-              <Subtitle numberOfLines={3}>{path.name}</Subtitle>
-              <View styleName="horizontal">
-                <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
-              </View>
-              <View styleName="horizontal">
-                <Caption styleName="collapsible" numberOfLines={2}> </Caption>
-              </View>
-              <View styleName="horizontal">
-                <View styleName="horizontal flexible">
-                  <Icon style={{color: 'gray', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
-                  <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
-                </View>
-                <View styleName="horizontal flexible">
-                  <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
-                  <Caption style={{color: 'gray', flex:1}} >{path.comments}</Caption>
-                </View>
-              </View>
-            </View>
-          </Card>
-        </TouchableOpacity>
-      );
+  rowPressed(resultId) {
+    var id = resultId;
+
+    this.props.navigator.push({
+      title: 'Detail',
+      name: 'RouteDetail',
+      component: RouteDetail,
+      passProps: {id: id}
     });
-    return (
-      <GridRow columns={2}>
-        {cellViews}
-      </GridRow>
-    );
   }
 
+    renderRow(path) {
+      return (
+        <TouchableOpacity
+          style={{flex:1}}
+          onPress={()=>this.rowPressed(path)}>
+          <View style={{flex:1}}>
+            <Image
+              styleName="large-banner"
+              source={{ uri: path.imageUrl }}
+            >
+              <Tile style={{marginTop:-50}}>
+                <Title styleName="md-gutter-bottom" style={{marginLeft:-30}}>{path.title}</Title>
+                <Subtitle styleName="sm-gutter-horizontal" style={{marginLeft:-30}}>{path.description}</Subtitle>
+              </Tile>
+              <View styleName="horizontal" style={{marginTop:150, marginRight:0}}>
+                <View styleName="horizontal flexible">
+                  <Icon style={{color: 'white', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
+                  <Caption style={{color: 'white', flex:1}} >{path.likes}</Caption>
+                </View>
+                <View styleName="horizontal flexible">
+                  <Icon style={{color: 'white', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
+                  <Caption style={{color: 'white', flex:1}} >{path.comments}</Caption>
+                </View>
+              </View>
+            </Image>
+            <Divider styleName="line" />
+          </View>
+        </TouchableOpacity>
+      );
+    }
+
   render() {
-    console.warn("loading: " + this.state.isLoading);
     const groupedData = GridRow.groupByRows(this.state.routes, 2, () => {
       return 1;
     });
     return (
       <ListView
-        data={groupedData}
+        data={this.state.routes}
         loading={this.state.isLoading}
         renderRow={this.renderRow}
       />

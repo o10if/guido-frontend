@@ -1,20 +1,8 @@
-import { Route, Landmark, Waypoint } from './agent';
 import React, { Component} from 'react';
 import MapView from 'react-native-maps';
-import flag from '../assets/flag.png';
 import { Route } from './agent';
 
 import {
-  ScrollView,
-  Icon,
-  Row,
-  Subtitle,
-  Text,
-  Title,
-  View,
-  Image,
-  Divider,
-  Tile,
   Screen,
 } from '@shoutem/ui';
 
@@ -85,14 +73,13 @@ export default class RouteGeneral extends Component {
     };
 
     mapStyle = require('../assets/mapStyle.json');
-    
+
     let routes = Route.search({
       'keywords': 'fourvière',
       'limit': 10,
       'tags': ['lol', 'lolipop'],
       'near': {'latMin': 35.2, 'latMax': 12.2, 'longMin': 12.1, 'longMax': 4.5},
     });
-    const { restaurant } = this.props;
 
     return (
       <Screen styleName="paper full-screen">
