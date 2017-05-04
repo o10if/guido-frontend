@@ -134,6 +134,7 @@ export default class SearchContainer extends Component {
             style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
             name="search" />
           <TextInput
+            autoFocus='true'
             returnKeyType = "search"
             underlineColorAndroid='transparent'
             style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
