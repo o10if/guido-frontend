@@ -14,15 +14,12 @@ import {
   Icon
 } from '@shoutem/ui';
 
-//引入子页面
 var SearchResult = require('./SearchResult').default;
 var RouteDetail = require('./RouteDetail').default;
 var TabView = require('./TabView').default;
 var SearchContainer = require('./SearchContainer').default;
 
-//设置导航栏
 var NavigationBarRouteMapper = {
-  //设置导航栏左按钮
   LeftButton: function(route,navigator,index,navState) {
     if(index === 0){
       return;
@@ -40,12 +37,10 @@ var NavigationBarRouteMapper = {
 
   },
 
-  //设置导航栏标题
   Title: function(route,navigator,index,navState) {
     return (<Text style={{flex:1, fontSize: 18,color: '#373E4D',fontWeight: '500', marginVertical: 15}}>{route.title}</Text>);
   },
 
-  //设置导航栏右按钮
   RightButton: function(route,navigator,index,navState) {
   }
 };
@@ -78,7 +73,6 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
 
 var SearchHome = React.createClass ({
 
-  //设置导航子页面导航路由方式
   renderScene: function(route, navigator) {
     this._navigator = navigator;
     globalNavigator = navigator;
@@ -96,7 +90,6 @@ var SearchHome = React.createClass ({
 
   render: function() {
     return(
-      //返回导航栏视图，并通过initialRoute显示第一次显示的子页面，initialRouteStack导航栏的子页面路由栈，configureScence导航栏子页面切换动画，navigationBar导航栏标题栏实现，renderScene导航栏路由方式
       <Navigator
         initialRoute={{name: 'TabView'}}
         navigationBar={<NavigationBar style={{height: 55,backgroundColor: 'white'}} routeMapper={NavigationBarRouteMapper}/>}
