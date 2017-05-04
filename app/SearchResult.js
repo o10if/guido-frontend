@@ -14,6 +14,7 @@ import {
 } from '@shoutem/ui';
 
 import RouteDetail from './RouteDetail';
+import { Route } from './agent';
 
 export default class SearchResult extends Component {
 
@@ -21,78 +22,20 @@ export default class SearchResult extends Component {
       super(props);
       this.renderRow = this.renderRow.bind(this);
       this.state = {
-        paths: [{
-          "id": "a4b76c9ef67dbf",
-          "name": "Trajet1",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "likes": "125",
-          "favorites": "468",
-        }, {
-          "id": "c23fb35ecceafb",
-          "name": "Trajet2",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
-          "likes": "1332",
-          "favorites": "432",
-        }, {
-          "id": "c142e53d23aec",
-          "name": "Trajet3",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
-          "likes": "1232",
-          "favorites": "238",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet4",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg"  },
-          "likes": "65",
-          "favorites": "544",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet5",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "likes": "154",
-          "favorites": "542",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet6",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "likes": "542",
-          "favorites": "98",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet7",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "likes": "643",
-          "favorites": "26",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet8",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "likes": "357",
-          "favorites": "37",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet9",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "likes": "876",
-          "favorites": "537",
-        }, {
-          "id": "cedfbcfaebfae",
-          "name": "Trajet10",
-          "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
-          "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "likes": "56",
-          "favorites": "54",
-        }],
+        paths: [],
+        isLoading: true
       }
+    }
+
+    async componentDidMount() {
+
+      let paths = await Route.search(this.props.text);
+
+      this.setState({
+        paths: paths,
+        isLoading: false
+      });
+
     }
 
     rowPressed(result) {
@@ -113,9 +56,9 @@ export default class SearchResult extends Component {
       return (
           <TouchableOpacity key={id} styleName="flexible" onPress={()=>this.rowPressed(path)}>
             <Card styleName="flexible">
-              <Image styleName="medium-wide" source={{uri: path.image && path.image.url}} />
+              <Image styleName="medium-wide" source={{uri: path.imageUrl && path.imageUrl}} />
               <View styleName="content">
-                <Subtitle numberOfLines={3}>{this.props.text} {path.name} {path.id}</Subtitle>
+                <Subtitle numberOfLines={3}>{path.title}</Subtitle>
                 <View styleName="horizontal">
                   <Caption styleName="collapsible" numberOfLines={2}>{path.description}</Caption>
                 </View>
