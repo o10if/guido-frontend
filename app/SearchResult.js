@@ -26,71 +26,71 @@ export default class SearchResult extends Component {
           "name": "Trajet1",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "like": "125",
-          "comments": "468",
+          "likes": "125",
+          "favorites": "468",
         }, {
           "id": "c23fb35ecceafb",
           "name": "Trajet2",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://static.vueling.com/cms/media/1216826/lyon.jpg" },
-          "like": "1332",
-          "comments": "432",
+          "likes": "1332",
+          "favorites": "432",
         }, {
           "id": "c142e53d23aec",
           "name": "Trajet3",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://lyon-sortie.fr/wp-content/uploads/sites/116/2016/09/Lyon.jpg" },
-          "like": "1232",
-          "comments": "238",
+          "likes": "1232",
+          "favorites": "238",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet4",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg"  },
-          "like": "65",
-          "comments": "544",
+          "likes": "65",
+          "favorites": "544",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet5",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "154",
-          "comments": "542",
+          "likes": "154",
+          "favorites": "542",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet6",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "542",
-          "comments": "98",
+          "likes": "542",
+          "favorites": "98",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet7",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "like": "643",
-          "comments": "26",
+          "likes": "643",
+          "favorites": "26",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet8",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "357",
-          "comments": "37",
+          "likes": "357",
+          "favorites": "37",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet9",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg" },
-          "like": "876",
-          "comments": "537",
+          "likes": "876",
+          "favorites": "537",
         }, {
           "id": "cedfbcfaebfae",
           "name": "Trajet10",
           "description": "Trajet Trajet Trajet Trajet Trajet Trajet Trajet",
           "image": { "url": "http://ortholudo.s3.amazonaws.com/production/locations/pictures/000/000/037/original/lyon.jpeg" },
-          "like": "56",
-          "comments": "54",
+          "likes": "56",
+          "favorites": "54",
         }],
       }
     }
@@ -125,11 +125,11 @@ export default class SearchResult extends Component {
                 <View styleName="horizontal">
                   <View styleName="horizontal flexible">
                     <Icon style={{color: 'gray', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
-                    <Caption style={{color: 'gray', flex:1}} >{path.like}</Caption>
+                    <Caption style={{color: 'gray', flex:1}} >{path.likes}</Caption>
                   </View>
                   <View styleName="horizontal flexible">
-                    <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
-                    <Caption style={{color: 'gray', flex:1}} >{path.comments}</Caption>
+                    <Icon style={{color: 'gray', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="add-to-favorites-full" />
+                    <Caption style={{color: 'gray', flex:1}} >{path.favorites}</Caption>
                   </View>
                 </View>
               </View>

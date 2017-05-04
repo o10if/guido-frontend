@@ -45,7 +45,7 @@ export default class RouteList extends Component {
     var id = resultId;
 
     this.props.navigator.push({
-      title: 'Detail',
+      title: 'Détail',
       name: 'RouteDetail',
       component: RouteDetail,
       passProps: {id: id}
@@ -63,17 +63,17 @@ export default class RouteList extends Component {
               source={{ uri: path.imageUrl }}
             >
               <Tile style={{marginTop:-50}}>
-                <Title styleName="md-gutter-bottom" style={{marginLeft:-30}}>{path.title}</Title>
-                <Subtitle styleName="sm-gutter-horizontal" style={{marginLeft:-30}}>{path.description}</Subtitle>
+                <Title styleName="md-gutter-bottom" style={{marginLeft:-20}}>{path.title}</Title>
+                <Subtitle styleName="sm-gutter-horizontal" style={{marginLeft:-20}}>{path.description}</Subtitle>
               </Tile>
-              <View styleName="horizontal" style={{marginTop:150, marginRight:0}}>
+              <View styleName="horizontal" style={{marginTop:150, marginLeft:250}}>
                 <View styleName="horizontal flexible">
                   <Icon style={{color: 'white', flex:1, top:3, transform:[{scale:0.75}]}} name="like" />
                   <Caption style={{color: 'white', flex:1}} >{path.likes}</Caption>
                 </View>
                 <View styleName="horizontal flexible">
-                  <Icon style={{color: 'white', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="comment-full" />
-                  <Caption style={{color: 'white', flex:1}} >{path.comments}</Caption>
+                  <Icon style={{color: 'white', flex:1, top:4.5, transform:[{scale:0.7}]}}  name="add-to-favorites-full" />
+                  <Caption style={{color: 'white', flex:1}} >{path.favorites}</Caption>
                 </View>
               </View>
             </Image>
