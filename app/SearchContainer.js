@@ -3,6 +3,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
 import {
@@ -14,7 +15,6 @@ import {
   Divider,
   Subtitle,
   ListView,
-  TextInput
 } from '@shoutem/ui';
 
 import SearchResult from './SearchResult';
@@ -78,7 +78,7 @@ export default class SearchContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
+      text: this.props.text,
       results: [],
       items,
       tags,
@@ -128,8 +128,8 @@ export default class SearchContainer extends Component {
   render() {
 
     return (
-      <View style={{marginTop: 50}}>
-        <View style={{marginBottom:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
+      <View style={{marginTop: 60}}>
+        <View style={{marginBottom:5, marginLeft:5, marginRight:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
           <Icon
             style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
             name="search" />
@@ -141,7 +141,6 @@ export default class SearchContainer extends Component {
             value={this.state.text}
             onChangeText={(text) => this.setState({text})}
             onSubmitEditing={this.onSubmitEditing.bind(this)}
-            onFocus={()=>this.rowPressed()}
 
           />
         </View>

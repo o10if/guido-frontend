@@ -47,7 +47,7 @@ export default class RouteSearchBar extends Component {
             style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
             placeholder="Rechercher"
             value={this.state.text}
-            onChangeText={(text) => this.setState({text})}
+            onChangeText={()=>this.rowPressed(this.state.text)}
             onSubmitEditing={this.onSubmitEditing.bind(this)}
             onFocus={()=>this.rowPressed()}
 
