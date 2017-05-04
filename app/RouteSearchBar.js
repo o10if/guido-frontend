@@ -36,23 +36,12 @@ export default class RouteSearchBar extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-
-        <View style={{marginBottom:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
+        <TouchableOpacity onPress={()=>this.rowPressed()} style={{marginBottom:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
           <Icon
             style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
             name="search" />
-          <TextInput
-            returnKeyType = "search"
-            underlineColorAndroid='transparent'
-            style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
-            placeholder="Rechercher"
-            value={this.state.text}
-            onChangeText={(text) => this.setState({text})}
-            onSubmitEditing={this.onSubmitEditing.bind(this)}
-            onFocus={()=>this.rowPressed()}
-
-          />
-        </View>
+          <Text style={{flex: 1, height: 30, fontSize: 15, marginTop: 5, marginLeft:2}}>Rechercher</Text>
+        </TouchableOpacity>
         <RoutesList navigator={this.props.navigator}/>
       </View>
     );
