@@ -40,7 +40,7 @@ export default class SearchResult extends Component {
 
     rowPressed(result) {
       var id = result.id;
-      var name = result.name;
+      var name = result.title;
 
       this.props.navigator.push({
         title: name,

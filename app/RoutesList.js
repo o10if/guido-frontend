@@ -41,11 +41,12 @@ export default class RouteList extends Component {
 
   }
 
-  rowPressed(resultId) {
-    var id = resultId;
+  rowPressed(result) {
+    var id = result.id;
+    var title = result.title;
 
     this.props.navigator.push({
-      title: 'Détail',
+      title: title,
       name: 'RouteDetail',
       component: RouteDetail,
       passProps: {id: id}
@@ -56,7 +57,7 @@ export default class RouteList extends Component {
       return (
         <TouchableOpacity
           style={{flex:1}}
-          onPress={()=>this.rowPressed(path.id)}>
+          onPress={()=>this.rowPressed(path)}>
           <View style={{flex:1}}>
             <Image
               styleName="large-banner"
