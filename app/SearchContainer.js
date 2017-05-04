@@ -48,28 +48,28 @@ const items = [
 
 const tags = [
   {
-    "name": "dsoksko",
+    "name": "historique",
   },
   {
-    "name": "asasa",
+    "name": "monument",
   },
   {
-    "name": "dsoksko",
+    "name": "art",
   },
   {
-    "name": "dsoksko",
+    "name": "vieux lyon",
   },
   {
-    "name": "dsoksko",
+    "name": "bellecour",
   },
   {
-    "name": "dsoksko",
+    "name": "fourviere",
   },
   {
-    "name": "dsoksko",
+    "name": "hotel de ville",
   },
   {
-    "name": "dsoksko",
+    "name": "part dieu",
   }
 ];
 
@@ -118,7 +118,7 @@ export default class SearchContainer extends Component {
     var textSearch = this.state.text;
     //this push sends all props in passProps to the view SearchResult
     this.props.navigator.push({
-      title: 'Results',
+      title: 'Résultats',
       name: 'SearchResult',
       component: SearchResult,
       passProps: {text: this.state.text}
@@ -126,24 +126,25 @@ export default class SearchContainer extends Component {
   }
 
   render() {
-    
+
     return (
       <View style={{marginTop: 50}}>
-      <View style={{marginBottom:5, marginTop: 15, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
-        <Icon
-          style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
-          name="search" />
-        <TextInput
-          returnKeyType = "search"
-          underlineColorAndroid='transparent'
-          style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
-          placeholder="Rechercher"
-          value={this.state.text}
-          onChangeText={(text) => this.setState({text})}
-          onSubmitEditing={this.onSubmitEditing.bind(this)}
+        <View style={{marginBottom:5, height:35, borderColor: '#E0E0E0', backgroundColor: '#E0E0E0', borderWidth: 1, borderRadius: 5, flexDirection: 'row'}}>
+          <Icon
+            style={{height:32, color:'gray', paddingLeft:5, paddingTop:2}}
+            name="search" />
+          <TextInput
+            returnKeyType = "search"
+            underlineColorAndroid='transparent'
+            style={{flex: 1, height: 30, fontSize: 15, paddingBottom: 5}}
+            placeholder="Rechercher"
+            value={this.state.text}
+            onChangeText={(text) => this.setState({text})}
+            onSubmitEditing={this.onSubmitEditing.bind(this)}
+            onFocus={()=>this.rowPressed()}
 
-        />
-      </View>
+          />
+        </View>
         <View>
           <ListView
             data={tags}

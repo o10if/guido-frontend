@@ -28,7 +28,7 @@ export default class RouteSearchBar extends Component {
   rowPressed() {
       //this push sends all props in passProps to the view SearchResult
       this.props.navigator.push({
-        title: 'Search',
+        title: 'Rechercher',
         name: 'SearchContainer',
         component: SearchContainer,
       });
